@@ -386,14 +386,15 @@ namespace PVPNetConnect
                         break;
                     }
 
+                    con = WebRequest.Create(loginQueue + "login-queue/rest/queue/ticker/" + champ);
                     while (id - cur > rate)
                     {
                         sb.Clear();
 
-                        OnLoginQueueUpdate(this, id - cur);
+                        UpdateLoginQueuePosition(this, id - cur);
 
                         Thread.Sleep(delay);
-                        con = WebRequest.Create(loginQueue + "login-queue/rest/queue/ticker/" + champ);
+                        
                         con.Method = "GET";
                         webresponse = con.GetResponse();
                         inputStream = webresponse.GetResponseStream();
@@ -415,7 +416,7 @@ namespace PVPNetConnect
                     }
 
 
-
+                    con = WebRequest.Create(loginQueue + "login-queue/rest/queue/authToken/" + user.ToLower());
                     while (sb.ToString() == null || !result.ContainsKey("token"))
                     {
                         try
@@ -423,12 +424,12 @@ namespace PVPNetConnect
                             sb.Clear();
 
                             if (id - cur < 0)
-                                OnLoginQueueUpdate(this, 0);
+                                UpdateLoginQueuePosition(this, 0);
                             else
-                                OnLoginQueueUpdate(this, id - cur);
+                                UpdateLoginQueuePosition(this, id - cur);
 
                             Thread.Sleep(delay / 10);
-                            con = WebRequest.Create(loginQueue + "login-queue/rest/queue/authToken/" + user.ToLower());
+                            
                             con.Method = "GET";
                             webresponse = con.GetResponse();
                             inputStream = webresponse.GetResponseStream();
@@ -449,7 +450,7 @@ namespace PVPNetConnect
                     }
                 }
 
-                OnLoginQueueUpdate(this, 0);
+                UpdateLoginQueuePosition(this, 0);
                 authToken = result.GetString("token");
 
                 return true;
@@ -476,6 +477,11 @@ namespace PVPNetConnect
             }
         }
 
+        private void UpdateLoginQueuePosition(object sender, int positionInLine)
+        {
+            if (OnLoginQueueUpdate != null)
+                OnLoginQueueUpdate(sender, positionInLine);
+        }
         private int HexToInt(string hex)
         {
             int total = 0;
