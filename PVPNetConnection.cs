@@ -20,7 +20,13 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
-using PVPNetConnect.Callbacks;
+
+using PVPNetConnect.Assets;
+using PVPNetConnect.RiotObjects;
+using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Statistics;
+using PVPNetConnect.RiotObjects.Client;
+using PVPNetConnect.RiotObjects.Game;
 
 namespace PVPNetConnect
 {
@@ -386,15 +392,14 @@ namespace PVPNetConnect
                         break;
                     }
 
-                    con = WebRequest.Create(loginQueue + "login-queue/rest/queue/ticker/" + champ);
                     while (id - cur > rate)
                     {
                         sb.Clear();
 
-                        UpdateLoginQueuePosition(this, id - cur);
+                        OnLoginQueueUpdate(this, id - cur);
 
                         Thread.Sleep(delay);
-                        
+                        con = WebRequest.Create(loginQueue + "login-queue/rest/queue/ticker/" + champ);
                         con.Method = "GET";
                         webresponse = con.GetResponse();
                         inputStream = webresponse.GetResponseStream();
@@ -416,7 +421,7 @@ namespace PVPNetConnect
                     }
 
 
-                    con = WebRequest.Create(loginQueue + "login-queue/rest/queue/authToken/" + user.ToLower());
+
                     while (sb.ToString() == null || !result.ContainsKey("token"))
                     {
                         try
@@ -424,12 +429,12 @@ namespace PVPNetConnect
                             sb.Clear();
 
                             if (id - cur < 0)
-                                UpdateLoginQueuePosition(this, 0);
+                                OnLoginQueueUpdate(this, 0);
                             else
-                                UpdateLoginQueuePosition(this, id - cur);
+                                OnLoginQueueUpdate(this, id - cur);
 
                             Thread.Sleep(delay / 10);
-                            
+                            con = WebRequest.Create(loginQueue + "login-queue/rest/queue/authToken/" + user.ToLower());
                             con.Method = "GET";
                             webresponse = con.GetResponse();
                             inputStream = webresponse.GetResponseStream();
@@ -450,7 +455,7 @@ namespace PVPNetConnect
                     }
                 }
 
-                UpdateLoginQueuePosition(this, 0);
+                OnLoginQueueUpdate(this, 0);
                 authToken = result.GetString("token");
 
                 return true;
@@ -477,11 +482,6 @@ namespace PVPNetConnect
             }
         }
 
-        private void UpdateLoginQueuePosition(object sender, int positionInLine)
-        {
-            if (OnLoginQueueUpdate != null)
-                OnLoginQueueUpdate(sender, positionInLine);
-        }
         private int HexToInt(string hex)
         {
             int total = 0;
@@ -779,6 +779,7 @@ namespace PVPNetConnect
 
         private void Error(string message, ErrorType type)
         {
+            Console.WriteLine(message);
             Error error = new Error()
             {
                 Type = type,
@@ -969,10 +970,21 @@ namespace PVPNetConnect
                         //If it isn't, give an error and remove the callback if there is one.
                         if (result["result"].Equals("_error"))
                         {
-                            Error(GetErrorMessage(result), ErrorType.Receive);
+                            Error("Warning, invalid result (" + callbacks[(int)id].GetType() + ") : " + GetErrorMessage(result), ErrorType.Receive);
 
                             if (callbacks.ContainsKey((int)id))
+                            {
+                                RiotGamesObject cb = callbacks[(int)id];
+                                //TODO: better way then current hotfix to send PlatformGame as a null value
+                                if (cb.GetType().ToString() == "PVPNetConnect.RiotObjects.Game.PlatformGameLifecycle")
+                                {
+                                    if (cb != null)
+                                    {
+                                        cb.DoCallback(null);
+                                    }
+                                }
                                 callbacks.Remove((int)id);
+                            }
                         }
 
 
@@ -1085,63 +1097,21 @@ namespace PVPNetConnect
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
         }
 
-        public void GetSumonerActiveBoosts(UnclassedObject.Callback callback)
+        public void GetAllPublicSummonerDataByAccount(int accountID, AllPublicSummonerData.Callback callback)
         {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("inventoryService", "getSumonerActiveBoosts", new object[] { }, cb);
+            AllPublicSummonerData cb = new AllPublicSummonerData(callback);
+            InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
-        public void GetAvailableChampions(UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("inventoryService", "getAvailableChampions", new object[] { }, cb);
-        }
-
-        public void GetAvailableQueues(UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("matchmakerService", "getAvailableQueues", new object[] { }, cb);
-        }
-
-        public void RetreivePlayerStatsByAccountId(int summonerID, string season, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "retreivePlayerStatsByAccountId", new object[] { summonerID, season }, cb);
-        }
-
-        public void RetrieveTopPlayedChampions(int summonerID, string queueType, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { summonerID, queueType }, cb);
-        }
-
-        public void GetRecentGames(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { summonerID }, cb);
-        }
-
-        public void GetSummonerRuneInventory(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("summonerRuneService", "getSummonerRuneInventory", new object[] { summonerID }, cb);
-        }
-
-        public void GetAllPublicSummonerDataByAccount(int summonerID, UnclassedObject.Callback callback)
-        {
-            UnclassedObject cb = new UnclassedObject(callback);
-            InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { summonerID }, cb);
-        }
-
-        public void GetAllSummonerDataByAccount(int summonerID, AllSummonerData.Callback callback)
+        public void GetAllSummonerDataByAccount(int accountID, AllSummonerData.Callback callback)
         {
             AllSummonerData cb = new AllSummonerData(callback);
-            InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { summonerID }, cb);
+            InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { accountID }, cb);
         }
 
-        public void GetSummonerByName(string summonerName, Summoner.Callback callback)
+        public void GetSummonerByName(string summonerName, PublicSummoner.Callback callback)
         {
-            Summoner cb = new Summoner(callback);
+            PublicSummoner cb = new PublicSummoner(callback);
             InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
         }
 
@@ -1149,6 +1119,49 @@ namespace PVPNetConnect
         {
             UnclassedObject cb = new UnclassedObject(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
+        }
+
+        public void GetRecentGames(int accountID, RecentGames.Callback callback)
+        {
+            RecentGames cb = new RecentGames(callback);
+            InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
+        }
+
+        public void RetrievePlayerStatsByAccountId(int accountID, StringEnum.Seasons season, PlayerLifetimeStats.Callback callback)
+        {
+            PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
+            InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { accountID, StringEnum.GetStringValue(season) }, cb);
+        }
+
+        public void GetAggregatedStats(int accountID, StringEnum.GameModes gameMode, StringEnum.Seasons season, AggregatedStats.Callback callback)
+        {
+            AggregatedStats cb = new AggregatedStats(callback);
+            InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, StringEnum.GetStringValue(gameMode), StringEnum.GetStringValue(season) }, cb);
+        }
+
+        public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycle.Callback callback)
+        {
+            PlatformGameLifecycle cb = new PlatformGameLifecycle(callback);
+            InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
+        }
+
+        public void GetMasteryBook(int summonerID, MasteryBook.Callback callback)
+        {
+            MasteryBook cb = new MasteryBook(callback);
+            InvokeWithCallback("masteryBookService", "getMasteryBook", new object[] { summonerID }, cb);
+        }
+
+        public void GetSpellBook(int summonerID, SpellBook.Callback callback)
+        {
+            SpellBook cb = new SpellBook(callback);
+            InvokeWithCallback("spellBookService", "getSpellBook", new object[] { summonerID }, cb);
+        }
+
+        // TODO: Not working because return type is only an object array
+        public void RetrieveTopPlayedChampions(int accountID, StringEnum.GameModes gameMode, TopPlayedChampions.Callback callback)
+        {
+            TopPlayedChampions cb = new TopPlayedChampions(callback);
+            InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { accountID, StringEnum.GetStringValue(gameMode) }, cb);
         }
 
         //Chat Information Methods

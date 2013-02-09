@@ -20,3 +20,5 @@ PvpNetConnection.GetAllSummonerDataByAccount(147682, new AllSummonerData.Callbac
 By having a static return class we can more easily access the available information.
 
 All of these methods are run Asynchronously.
+
+Many Thanks to DarkActive for writing a lot of the RiotObjects classes.
