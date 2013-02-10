@@ -86,6 +86,21 @@ namespace PVPNetConnect.RiotObjects
 
                    value = objectList;
                }
+               else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+               {
+                   TypedObject to = result.GetTO(intern.Name);
+
+                   Type[] elementTypes = type.GetGenericArguments();
+                   var genericDictionaryType = typeof(Dictionary<,>).MakeGenericType(elementTypes);
+                   IDictionary objectDictionary = (IDictionary)Activator.CreateInstance(genericDictionaryType);
+
+                   foreach (string key in to.Keys)
+                   {
+                       objectDictionary.Add(key, Activator.CreateInstance(elementTypes[1], to[key]));
+                   }
+
+                   value = objectDictionary;
+               }
                else if (type == typeof(object[]))
                {
                    value = result.GetArray(intern.Name);
