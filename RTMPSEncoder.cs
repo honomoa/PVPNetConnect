@@ -17,12 +17,12 @@ using System.Text;
 
 namespace PVPNetConnect
 {
-   static class RTMPSEncoder
+   public class RTMPSEncoder
    {
 
-      public static long startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
+      public long startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
 
-      public static byte[] AddHeaders(byte[] data)
+      public byte[] AddHeaders(byte[] data)
       {
          List<byte> result = new List<byte>();
 
@@ -64,7 +64,7 @@ namespace PVPNetConnect
          return ret;
       }
 
-      public static byte[] EncodeConnect(Dictionary<string, object> paramaters)
+      public byte[] EncodeConnect(Dictionary<string, object> paramaters)
       {
          List<Byte> result = new List<Byte>();
 
@@ -111,7 +111,7 @@ namespace PVPNetConnect
          return ret;
       }
 
-      public static byte[] EncodeInvoke(int id, object data)
+      public byte[] EncodeInvoke(int id, object data)
       {
          List<Byte> result = new List<Byte>();
 
@@ -132,7 +132,7 @@ namespace PVPNetConnect
          return ret;
       }
 
-      public static byte[] Encode(object obj)
+      public byte[] Encode(object obj)
       {
          List<byte> result = new List<byte>();
          Encode(result, obj);
@@ -144,7 +144,7 @@ namespace PVPNetConnect
          return ret;
       }
 
-      public static void Encode(List<byte> ret, object obj)
+      public void Encode(List<byte> ret, object obj)
       {
          if (obj == null)
          {
@@ -206,7 +206,7 @@ namespace PVPNetConnect
          }
       }
 
-      private static void WriteInt(List<Byte> ret, int val)
+      private void WriteInt(List<Byte> ret, int val)
       {
          if (val < 0 || val >= 0x200000)
          {
@@ -229,7 +229,7 @@ namespace PVPNetConnect
          }
       }
 
-      private static void WriteDouble(List<byte> ret, double val)
+      private void WriteDouble(List<byte> ret, double val)
       {
          if (Double.IsNaN(val))
          {
@@ -251,7 +251,7 @@ namespace PVPNetConnect
          }
       }
 
-      private static void WriteString(List<byte> ret, string val)
+      private void WriteString(List<byte> ret, string val)
       {
          byte[] temp = null;
          try
@@ -270,13 +270,13 @@ namespace PVPNetConnect
             ret.Add(b);
       }
 
-      private static void WriteDate(List<Byte> ret, DateTime val)
+      private void WriteDate(List<Byte> ret, DateTime val)
       {
          ret.Add((byte)0x01);
          WriteDouble(ret, (double)val.TimeOfDay.TotalMilliseconds);
       }
 
-      private static void WriteArray(List<byte> ret, object[] val)
+      private void WriteArray(List<byte> ret, object[] val)
       {
          WriteInt(ret, (val.Length << 1) | 1);
          ret.Add((byte)0x01);
@@ -284,7 +284,7 @@ namespace PVPNetConnect
             Encode(ret, obj);
       }
 
-      private static void WriteAssociativeArray(List<Byte> ret, Dictionary<string, object> val)
+      private void WriteAssociativeArray(List<Byte> ret, Dictionary<string, object> val)
       {
          ret.Add((byte)0x01);
          foreach (string key in val.Keys)
@@ -295,7 +295,7 @@ namespace PVPNetConnect
          ret.Add((byte)0x01);
       }
 
-      private static void WriteObject(List<byte> ret, TypedObject val)
+      private void WriteObject(List<byte> ret, TypedObject val)
       {
          if (val.type == null || val.type.Equals(""))
          {
@@ -333,12 +333,12 @@ namespace PVPNetConnect
          }
       }
 
-      private static void WriteByteArray(List<byte> ret, byte[] val)
+      private void WriteByteArray(List<byte> ret, byte[] val)
       {
          throw new NotImplementedException("Encoding byte arrays is not implemented");
       }
 
-      private static void WriteIntAMF0(List<byte> ret, int val)
+      private void WriteIntAMF0(List<byte> ret, int val)
       {
          ret.Add((byte)0x00);
 
@@ -350,7 +350,7 @@ namespace PVPNetConnect
             //ret.Add(b);
       }
 
-      private static void WriteStringAMF0(List<byte> ret, string val)
+      private void WriteStringAMF0(List<byte> ret, string val)
       {
          byte[] temp = null;
          try

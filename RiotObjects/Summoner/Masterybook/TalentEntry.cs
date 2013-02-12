@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using PVPNetConnect.RiotObjects.Catalog;
+
 namespace PVPNetConnect.RiotObjects.Summoner
 {
+    /// <summary>
+    /// The class that defines a talent entry.
+    /// </summary>
     public class TalentEntry : RiotGamesObject
     {
         #region Constructors and Callbacks
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TalentEntry"/> class.
+        /// </summary>
+        /// <param name="result">The result.</param>
         public TalentEntry(TypedObject result)
         {
             base.SetFields<TalentEntry>(this, result);

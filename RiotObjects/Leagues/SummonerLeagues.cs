@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Statistics
+namespace PVPNetConnect.RiotObjects.Leagues
 {
     /// <summary>
-    /// The class that defines top played champions.
+    /// Class with specific information about a summoner's leagues
     /// </summary>
-    public class TopPlayedChampions : RiotGamesObject
+    public class SummonerLeagues : RiotGamesObject
     {
         #region Constructors and Callbacks
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TopPlayedChampions"/> class.
+        /// Initializes a new instance of the <see cref="SummonerLeagues"/> class.
         /// </summary>
-        /// <param name="callback">The callback.</param>
-        public TopPlayedChampions(Callback callback)
+        /// <param name="callback">The callback method.</param>
+        public SummonerLeagues(Callback callback)
         {
             this.callback = callback;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TopPlayedChampions"/> class.
+        /// Initializes a new instance of the <see cref="SummonerLeagues"/> class.
         /// </summary>
         /// <param name="result">The result.</param>
-        public TopPlayedChampions(TypedObject result)
+        public SummonerLeagues(TypedObject result)
         {
-            base.SetFields<TopPlayedChampions>(this, result);
+            base.SetFields<SummonerLeagues>(this, result);
         }
 
         /// <summary>
-        /// The delegate for the callback method.
+        /// Delegate for the callback method.
         /// </summary>
         /// <param name="result">The result.</param>
-        public delegate void Callback(TopPlayedChampions result);
+        public delegate void Callback(SummonerLeagues result);
 
         /// <summary>
         /// The callback method.
@@ -47,7 +47,7 @@ namespace PVPNetConnect.RiotObjects.Statistics
         /// <param name="result">The result.</param>
         public override void DoCallback(TypedObject result)
         {
-            base.SetFields<TopPlayedChampions>(this, result);
+            base.SetFields<SummonerLeagues>(this, result);
             callback(this);
         }
 
@@ -56,10 +56,10 @@ namespace PVPNetConnect.RiotObjects.Statistics
         #region Member Properties
 
         /// <summary>
-        /// Total amount of games played with champion.
+        /// List of all leagues summoner is part of.
         /// </summary>
-        [InternalName("")]
-        public List<ChampionStatInfo> ChampionList { get; set; }
+        [InternalName("summonerLeagues")] 
+        public List<League> Leagues { get; set; }
 
         #endregion
     }

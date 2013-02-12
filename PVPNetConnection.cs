@@ -24,6 +24,7 @@ using System.Web.Script.Serialization;
 using PVPNetConnect.Assets;
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Summoner;
+using PVPNetConnect.RiotObjects.Leagues;
 using PVPNetConnect.RiotObjects.Statistics;
 using PVPNetConnect.RiotObjects.Client;
 using PVPNetConnect.RiotObjects.Game;
@@ -59,6 +60,9 @@ namespace PVPNetConnect
 
 
         //Invoke Variables
+        private RTMPSEncoder encoder = new RTMPSEncoder();
+        private RTMPSDecoder decoder = new RTMPSDecoder();
+
         private Random rand = new Random();
         private JavaScriptSerializer serializer = new JavaScriptSerializer();
 
@@ -104,91 +108,10 @@ namespace PVPNetConnect
                     this.user = user;
                     this.password = password;
                     this.clientVersion = clientVersion;
-
-                    if (region == Region.NA)
-                    {
-                        this.server = "prod.na1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.na1.lol.riotgames.com/";
-                        this.locale = "en_US";
-                    }
-                    else if (region == Region.EUW)
-                    {
-                        this.server = "prod.eu.lol.riotgames.com";
-                        this.loginQueue = "https://lq.eu.lol.riotgames.com/";
-                        this.locale = "en_GB";
-                    }
-                    else if (region == Region.EUN)
-                    {
-                        this.server = "prod.eun1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.eun1.lol.riotgames.com/";
-                        this.locale = "en_GB";
-                    }
-                    else if (region == Region.KR)
-                    {
-                        this.server = "prod.kr.lol.riotgames.com";
-                        this.loginQueue = "https://lq.kr.lol.riotgames.com/";
-                        this.locale = "ko_KR";
-                    }
-                    else if (region == Region.BR)
-                    {
-                        this.server = "prod.br.lol.riotgames.com";
-                        this.loginQueue = "https://lq.br.lol.riotgames.com/";
-                        this.locale = "pt_BR";
-                    }
-                    else if (region == Region.TR)
-                    {
-                        this.server = "prod.tr.lol.riotgames.com";
-                        this.loginQueue = "https://lq.tr.lol.riotgames.com/";
-                        this.locale = "pt_BR";
-                    }
-                    else if (region == Region.PBE)
-                    {
-                        this.server = "prod.pbe1.lol.riotgames.com";
-                        this.loginQueue = "https://lq.pbe1.lol.riotgames.com/";
-                        this.locale = "en_US";
-                    }
-                    else if (region == Region.SG || region == Region.MY || region == Region.SGMY)
-                    {
-                        this.server = "prod.lol.garenanow.com";
-                        this.loginQueue = "https://lq.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.TW)
-                    {
-                        this.server = "prodtw.lol.garenanow.com";
-                        this.loginQueue = "https://loginqueuetw.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.TH)
-                    {
-                        this.server = "prodth.lol.garenanow.com";
-                        this.loginQueue = "https://lqth.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.PH)
-                    {
-                        this.server = "prodph.lol.garenanow.com";
-                        this.loginQueue = "https://storeph.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else if (region == Region.VN)
-                    {
-                        this.server = "prodvn.lol.garenanow.com";
-                        this.loginQueue = "https://lqvn.lol.garenanow.com/";
-                        this.locale = "en_US";
-                        this.useGarena = true;
-                    }
-                    else
-                    {
-                        Error("Unknown Region: " + region, ErrorType.General);
-                        Disconnect();
-                        return;
-                    }
-
+                    this.server = RegionInfo.GetServerValue(region);
+                    this.loginQueue = RegionInfo.GetLoginQueueValue(region);
+                    this.locale = RegionInfo.GetLocaleValue(region);
+                    this.useGarena = RegionInfo.GetUseGarenaValue(region);
 
                     //Sets up our sslStream to riots servers
                     try
@@ -586,9 +509,9 @@ namespace PVPNetConnect
             paramaters.Add("objectEncoding", 3);
 
 
-            RTMPSEncoder.startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
+            encoder.startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
 
-            byte[] connect = RTMPSEncoder.EncodeConnect(paramaters);
+            byte[] connect = encoder.EncodeConnect(paramaters);
 
             sslStream.Write(connect, 0, connect.Length);
 
@@ -799,7 +722,7 @@ namespace PVPNetConnect
 
             try
             {
-                byte[] data = RTMPSEncoder.EncodeInvoke(id, packet);
+                byte[] data = encoder.EncodeInvoke(id, packet);
 
                 sslStream.Write(data, 0, data.Length);
 
@@ -936,9 +859,9 @@ namespace PVPNetConnect
                         // Decode result
                         TypedObject result;
                         if (p.GetMessageType() == 0x14) // Connect
-                            result = RTMPSDecoder.DecodeConnect(p.GetData());
+                            result = decoder.DecodeConnect(p.GetData());
                         else if (p.GetMessageType() == 0x11) // Invoke
-                            result = RTMPSDecoder.DecodeInvoke(p.GetData());
+                            result = decoder.DecodeInvoke(p.GetData());
                         else if (p.GetMessageType() == 0x06) // Set peer bandwidth
                         {
                             byte[] data = p.GetData();
@@ -1091,10 +1014,29 @@ namespace PVPNetConnect
         #region Public Client Methods
 
         //PVPNet/User Information Methods
+
         public void GetLoginDataPacketForUser(LoginDataPacket.Callback callback)
         {
             LoginDataPacket cb = new LoginDataPacket(callback);
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
+        }
+
+        public void GetAllMyLeagues(SummonerLeagues.Callback callback)
+        {
+            SummonerLeagues cb = new SummonerLeagues(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getAllMyLeagues", new object[] { }, cb);
+        }
+
+        public void GetAllLeaguesForPlayer(int summonerID, SummonerLeagues.Callback callback)
+        {
+            SummonerLeagues cb = new SummonerLeagues(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID }, cb);
+        }
+
+        public void GetChallengerLeague(QueueTypes queueType, League.Callback callback)
+        {
+            League cb = new League(callback);
+            InvokeWithCallback("leaguesServiceProxy", "getChallengerLeague", new object[] { StringEnum.GetStringValue(queueType) }, cb);
         }
 
         public void GetAllPublicSummonerDataByAccount(int accountID, AllPublicSummonerData.Callback callback)
@@ -1115,9 +1057,9 @@ namespace PVPNetConnect
             InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
         }
 
-        public void GetSummonerNames(object[] summonerIDs, UnclassedObject.Callback callback)
+        public void GetSummonerNames(object[] summonerIDs, SummonerNames.Callback callback)
         {
-            UnclassedObject cb = new UnclassedObject(callback);
+            SummonerNames cb = new SummonerNames(callback);
             InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
         }
 
@@ -1127,13 +1069,13 @@ namespace PVPNetConnect
             InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
         }
 
-        public void RetrievePlayerStatsByAccountId(int accountID, StringEnum.Seasons season, PlayerLifetimeStats.Callback callback)
+        public void RetrievePlayerStatsByAccountId(int accountID, Seasons season, PlayerLifetimeStats.Callback callback)
         {
             PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
             InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { accountID, StringEnum.GetStringValue(season) }, cb);
         }
 
-        public void GetAggregatedStats(int accountID, StringEnum.GameModes gameMode, StringEnum.Seasons season, AggregatedStats.Callback callback)
+        public void GetAggregatedStats(int accountID, GameModes gameMode, Seasons season, AggregatedStats.Callback callback)
         {
             AggregatedStats cb = new AggregatedStats(callback);
             InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, StringEnum.GetStringValue(gameMode), StringEnum.GetStringValue(season) }, cb);
@@ -1157,14 +1099,13 @@ namespace PVPNetConnect
             InvokeWithCallback("spellBookService", "getSpellBook", new object[] { summonerID }, cb);
         }
 
-        // TODO: Not working because return type is only an object array
-        public void RetrieveTopPlayedChampions(int accountID, StringEnum.GameModes gameMode, TopPlayedChampions.Callback callback)
+
+        public void RetrieveTopPlayedChampions(int accountID, GameModes gameMode, TopPlayedChampions.Callback callback)
         {
             TopPlayedChampions cb = new TopPlayedChampions(callback);
             InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { accountID, StringEnum.GetStringValue(gameMode) }, cb);
         }
 
-        //Chat Information Methods
         public void GetSummonerChatIdByName(string summonerName, UnclassedObject.Callback callback)
         {
             UnclassedObject cb = new UnclassedObject(callback);
