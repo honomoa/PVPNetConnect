@@ -9,6 +9,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 
+using PVPNetConnect.RiotObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -195,6 +196,7 @@ namespace PVPNetConnect
             ret.Add((byte)0x0A);
             WriteObject(ret, (TypedObject)obj);
          }
+
          else if (obj is Dictionary<string, object>)
          {
             ret.Add((byte)0x09);

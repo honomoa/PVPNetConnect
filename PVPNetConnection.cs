@@ -28,6 +28,7 @@ using PVPNetConnect.RiotObjects.Leagues;
 using PVPNetConnect.RiotObjects.Statistics;
 using PVPNetConnect.RiotObjects.Client;
 using PVPNetConnect.RiotObjects.Game;
+using System.Threading.Tasks;
 
 namespace PVPNetConnect
 {
@@ -702,7 +703,6 @@ namespace PVPNetConnect
 
         private void Error(string message, ErrorType type)
         {
-            Console.WriteLine(message);
             Error error = new Error()
             {
                 Type = type,
@@ -1021,11 +1021,40 @@ namespace PVPNetConnect
             InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
         }
 
+        public async Task<LoginDataPacket> GetLoginDataPacket()
+        {
+            int Id = Invoke("clientFacadeService", "getLoginDataPacketForUser", new object[] { });
+            while (!results.ContainsKey(Id))
+            {
+                await Task.Delay(10);
+            }
+            TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+            LoginDataPacket ldp = new LoginDataPacket(messageBody);
+            results.Remove(Id);
+
+            return ldp;
+        }
+
         public void GetAllMyLeagues(SummonerLeagues.Callback callback)
         {
             SummonerLeagues cb = new SummonerLeagues(callback);
             InvokeWithCallback("leaguesServiceProxy", "getAllMyLeagues", new object[] { }, cb);
         }
+
+        public async Task<SummonerLeagues> GetAllMyLeagues()
+        {
+            int Id = Invoke("leaguesServiceProxy", "getAllMyLeagues", new object[] { });
+            while (!results.ContainsKey(Id))
+            {
+                await Task.Delay(10);
+            }
+            TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+            SummonerLeagues myLeagues = new SummonerLeagues(messageBody);
+            results.Remove(Id);
+
+            return myLeagues;
+        }
+
 
         public void GetAllLeaguesForPlayer(int summonerID, SummonerLeagues.Callback callback)
         {
@@ -1033,10 +1062,38 @@ namespace PVPNetConnect
             InvokeWithCallback("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID }, cb);
         }
 
+        public async Task<SummonerLeagues> GetAllLeaguesForPlayer(int summonerID)
+        {
+            int Id = Invoke("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID });
+            while (!results.ContainsKey(Id))
+            {
+                await Task.Delay(10);
+            }
+            TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+            SummonerLeagues leagues = new SummonerLeagues(messageBody);
+            results.Remove(Id);
+
+            return leagues;
+        }
+
         public void GetChallengerLeague(QueueTypes queueType, League.Callback callback)
         {
             League cb = new League(callback);
             InvokeWithCallback("leaguesServiceProxy", "getChallengerLeague", new object[] { StringEnum.GetStringValue(queueType) }, cb);
+        }
+
+        public async Task<League> GetChallengerLeague(QueueTypes queueType)
+        {
+            int Id = Invoke("leaguesServiceProxy", "getChallengerLeague", new object[] { StringEnum.GetStringValue(queueType) });
+            while (!results.ContainsKey(Id))
+            {
+                await Task.Delay(10);
+            }
+            TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+            League league = new League(messageBody);
+            results.Remove(Id);
+
+            return league;
         }
 
         public void GetAllPublicSummonerDataByAccount(int accountID, AllPublicSummonerData.Callback callback)
@@ -1056,6 +1113,21 @@ namespace PVPNetConnect
             PublicSummoner cb = new PublicSummoner(callback);
             InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
         }
+
+        public async Task<PublicSummoner> GetSummonerByName(string summonerName)
+        {
+           int Id = Invoke("summonerService", "getSummonerByName", new object[] { summonerName });
+           while (!results.ContainsKey(Id))
+           {
+              await Task.Delay(10);
+           }
+           TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+           PublicSummoner summoner = new PublicSummoner(messageBody);
+           results.Remove(Id);
+
+           return summoner;
+        }
+
 
         public void GetSummonerNames(object[] summonerIDs, SummonerNames.Callback callback)
         {
@@ -1118,6 +1190,12 @@ namespace PVPNetConnect
             InvokeWithCallback("statisticsService", "getSummonerSummaryByInternalName", new object[] { summonerChatId }, cb);
         }
 
+
+        public void SaveMasteryBook(MasteryBook book, MasteryBook.Callback callback)
+        {
+           MasteryBook cb = new MasteryBook(callback);
+           InvokeWithCallback("masteryBookService", "saveMasteryBook", new object[] { book.GetBaseTypedObject() }, cb);
+        }
         #endregion
 
         #region General Returns

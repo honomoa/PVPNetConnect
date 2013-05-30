@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using PVPNetConnect.RiotObjects.Summoner;
 
 namespace PVPNetConnect.RiotObjects
 {
@@ -12,6 +13,91 @@ namespace PVPNetConnect.RiotObjects
     /// </summary>
     public abstract class RiotGamesObject
     {
+       public string TypeName {get; set;}
+
+       /// <summary>
+       /// Talent class with information about talent.
+       /// </summary>
+       [InternalName("futureData")]
+       public int FutureData { get; set; }
+
+       /// <summary>
+       /// Talent class with information about talent.
+       /// </summary>
+       [InternalName("dataVersion")]
+       public int DataVersion { get; set; }
+
+
+       public TypedObject GetBaseTypedObject() 
+       {
+          TypedObject typedObject = new TypedObject(TypeName);
+          Type objectType = this.GetType();
+
+          foreach (var prop in objectType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+          {
+             
+             var intern = prop.GetCustomAttributes(typeof(InternalNameAttribute), false).FirstOrDefault() as InternalNameAttribute;
+             if (intern == null)
+                continue;
+
+             object value;
+
+             var type = prop.PropertyType;
+
+             string typeName = type.Name;
+
+             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+             {
+                IList listValues = prop.GetValue(this) as IList;
+                object[] finalArray = new object[listValues.Count];
+                listValues.CopyTo(finalArray, 0);
+                List<object> finalObjList = new List<object>();
+                foreach (object ob in finalArray)
+                {
+                   Type obType = ob.GetType();
+
+                   if (typeof(RiotGamesObject).IsAssignableFrom(obType))
+                   {
+                      RiotGamesObject rgo = ob as RiotGamesObject;
+
+                      value = rgo.GetBaseTypedObject();
+                   }
+
+                   else
+                   {
+                      value = ob;
+                   }
+
+                   finalObjList.Add(value);
+                }
+                value = TypedObject.MakeArrayCollection(finalObjList.ToArray());
+             }
+             else if (typeof(RiotGamesObject).IsAssignableFrom(type))
+             {
+                RiotGamesObject rgo = prop.GetValue(this) as RiotGamesObject;
+
+                value = rgo.GetBaseTypedObject();
+             }
+             else
+             {
+                value = prop.GetValue(this);
+             }
+
+             typedObject.Add(intern.Name, value);
+          }
+
+          Type objectBaseType = objectType.BaseType;
+          foreach (var prop in objectBaseType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+          {
+             var intern = prop.GetCustomAttributes(typeof(InternalNameAttribute), false).FirstOrDefault() as InternalNameAttribute;
+             if (intern == null || typedObject.ContainsKey(intern.Name))
+                continue;
+
+             typedObject.Add(intern.Name, prop.GetValue(this));
+          }
+
+          return typedObject;
+       }
         /// <summary>
         /// The base virtual DoCallback method.
         /// </summary>
@@ -32,6 +118,8 @@ namespace PVPNetConnect.RiotObjects
         {
             if (result == null)
                 return;
+
+            TypeName = result.type;
 
             foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
             {

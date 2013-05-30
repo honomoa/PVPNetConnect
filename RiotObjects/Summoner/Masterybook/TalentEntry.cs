@@ -45,6 +45,13 @@ namespace PVPNetConnect.RiotObjects.Summoner
         [InternalName("talent")]
         public Talent Talent { get; set; }
 
+
+        /// <summary>
+        /// Talent class with information about talent.
+        /// </summary>
+        [InternalName("summonerId")]
+        public int SummonerId { get; set; }
+
         #endregion
     }
 }
