@@ -21,7 +21,7 @@ namespace PVPNetConnect
    public class RTMPSEncoder
    {
 
-      public long startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
+      private long startTime;
 
       public byte[] AddHeaders(byte[] data)
       {
@@ -67,6 +67,7 @@ namespace PVPNetConnect
 
       public byte[] EncodeConnect(Dictionary<string, object> paramaters)
       {
+         startTime = (long)DateTime.Now.TimeOfDay.TotalMilliseconds;
          List<Byte> result = new List<Byte>();
 
          WriteStringAMF0(result, "connect");
@@ -124,10 +125,24 @@ namespace PVPNetConnect
          result.Add((byte)0x11); // AMF3 object
          Encode(result, data);
 
-         byte[] ret = new byte[result.Count];
-         for (int i = 0; i < ret.Length; i++)
-            ret[i] = result[i];
+         byte[] ret = result.ToArray();
+         ret = AddHeaders(ret);
 
+         return ret;
+      }
+
+      public byte[] EncodeResult(object data, string resultType, int invokeId, int version)
+      {
+         List<byte> result = new List<byte>();
+
+         result.Add((byte)version); //Version
+         WriteStringAMF0(result, resultType); //Type
+         WriteIntAMF0(result, invokeId);
+         result.Add((byte)0x05); // Service call of null;
+         result.Add((byte)0x11); //AMF3 Object
+         Encode(result, data);
+
+         byte[] ret = result.ToArray();
          ret = AddHeaders(ret);
 
          return ret;
@@ -138,9 +153,7 @@ namespace PVPNetConnect
          List<byte> result = new List<byte>();
          Encode(result, obj);
 
-         byte[] ret = new byte[result.Count];
-         for (int i = 0; i < ret.Length; i++)
-            ret[i] = result[i];
+         byte[] ret = result.ToArray();
 
          return ret;
       }
@@ -317,6 +330,36 @@ namespace PVPNetConnect
             WriteString(ret, val.type);
 
             Encode(ret, val["array"]);
+         }
+         else if (val.type.Equals("DSK"))
+         {
+            WriteInt(ret, (val.Count << 4) | 3); // Inline + member count
+            WriteString(ret, val.type);
+            byte[] flag1 = new byte[8];
+            byte[] flag2 = new byte[8];
+            if (val["body"] != null)
+               flag1[0] = 1;
+            if (val["clientId"] != null)
+               flag1[1] = 1;
+            if (val["destination"] != null)
+               flag1[2] = 1;
+            if (val["headers"] != null)
+               flag1[3] = 1;
+            if (val["messageId"] != null && val["clientId"] != null)
+               flag1[4] = 1;
+            if (val["timestamp"] != null && val["destination"] !=null)
+               flag1[5] = 1;
+            if (val["timeToLive"] != null && val["headers"] != null)
+               flag1[6] = 1;
+
+
+
+            if (val["clientIdBytes"] != null)
+               flag2[0] = 1;
+            if (val["messageIdBytes"] != null)
+               flag2[1] = 1;
+
+            WriteObject(ret, val.GetTO("data"));
          }
          else
          {

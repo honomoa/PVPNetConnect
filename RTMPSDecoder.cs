@@ -84,6 +84,12 @@ namespace PVPNetConnect
             if (dataPos != dataBuffer.Length)
                 throw new Exception("Did not consume entire buffer: " + dataPos + " of " + dataBuffer.Length);
 
+            string[] typeNames = new string[classDefinitions.Count];
+            for (int i = 0; i < classDefinitions.Count; i++)
+            {
+               typeNames[i] = classDefinitions[i].type;
+            }
+
             return result;
         }
 

@@ -10,6 +10,15 @@ namespace PVPNetConnect.RiotObjects
     /// </summary>
     public class UnclassedObject : RiotGamesObject
     {
+       public override string TypeName
+       {
+          get
+          {
+             return this.type;
+          }
+       }
+
+       private string type = "";
         /// <summary>
         /// Initializes a new instance of the <see cref="UnclassedObject"/> class.
         /// </summary>

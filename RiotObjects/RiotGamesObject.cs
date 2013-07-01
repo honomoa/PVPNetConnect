@@ -4,7 +4,6 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using PVPNetConnect.RiotObjects.Summoner;
 
 namespace PVPNetConnect.RiotObjects
 {
@@ -13,7 +12,7 @@ namespace PVPNetConnect.RiotObjects
     /// </summary>
     public abstract class RiotGamesObject
     {
-       public string TypeName {get; set;}
+       public virtual string TypeName { get; private set; }
 
        /// <summary>
        /// Talent class with information about talent.
