@@ -45,10 +45,10 @@ public object BookPagesJson { get; set; }
 public List<SpellBookPageDTO> BookPages { get; set; }
 
 [InternalName("dateString")]
-public string DateString { get; set; }
+public String DateString { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

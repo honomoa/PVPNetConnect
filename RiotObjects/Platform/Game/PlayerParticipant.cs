@@ -39,67 +39,67 @@ callback(this);
 }
 
 [InternalName("timeAddedToQueue")]
-public double TimeAddedToQueue { get; set; }
+public Double TimeAddedToQueue { get; set; }
 
 [InternalName("index")]
-public int Index { get; set; }
+public Int32 Index { get; set; }
 
 [InternalName("queueRating")]
-public int QueueRating { get; set; }
+public Int32 QueueRating { get; set; }
 
 [InternalName("accountId")]
-public double AccountId { get; set; }
+public Double AccountId { get; set; }
 
 [InternalName("botDifficulty")]
-public string BotDifficulty { get; set; }
+public String BotDifficulty { get; set; }
 
 [InternalName("originalAccountNumber")]
-public double OriginalAccountNumber { get; set; }
+public Double OriginalAccountNumber { get; set; }
 
 [InternalName("summonerInternalName")]
-public string SummonerInternalName { get; set; }
+public String SummonerInternalName { get; set; }
 
 [InternalName("minor")]
-public bool Minor { get; set; }
+public Boolean Minor { get; set; }
 
 [InternalName("locale")]
 public object Locale { get; set; }
 
 [InternalName("lastSelectedSkinIndex")]
-public int LastSelectedSkinIndex { get; set; }
+public Int32 LastSelectedSkinIndex { get; set; }
 
 [InternalName("partnerId")]
-public string PartnerId { get; set; }
+public String PartnerId { get; set; }
 
 [InternalName("profileIconId")]
-public int ProfileIconId { get; set; }
+public Int32 ProfileIconId { get; set; }
 
 [InternalName("teamOwner")]
-public bool TeamOwner { get; set; }
+public Boolean TeamOwner { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 [InternalName("badges")]
-public int Badges { get; set; }
+public Int32 Badges { get; set; }
 
 [InternalName("pickTurn")]
-public int PickTurn { get; set; }
+public Int32 PickTurn { get; set; }
 
 [InternalName("clientInSynch")]
-public bool ClientInSynch { get; set; }
+public Boolean ClientInSynch { get; set; }
 
 [InternalName("summonerName")]
-public string SummonerName { get; set; }
+public String SummonerName { get; set; }
 
 [InternalName("pickMode")]
-public int PickMode { get; set; }
+public Int32 PickMode { get; set; }
 
 [InternalName("originalPlatformId")]
-public string OriginalPlatformId { get; set; }
+public String OriginalPlatformId { get; set; }
 
 [InternalName("teamParticipantId")]
-public object TeamParticipantId { get; set; }
+public Double TeamParticipantId { get; set; }
 
 }
 }

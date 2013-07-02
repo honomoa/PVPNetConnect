@@ -46,7 +46,7 @@ public object SummonerDefaultSpellsJson { get; set; }
 public TypedObject SummonerDefaultSpellMap { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

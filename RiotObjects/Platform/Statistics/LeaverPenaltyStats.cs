@@ -42,16 +42,16 @@ callback(this);
 public object LastLevelIncrease { get; set; }
 
 [InternalName("level")]
-public int Level { get; set; }
+public Int32 Level { get; set; }
 
 [InternalName("lastDecay")]
 public DateTime LastDecay { get; set; }
 
 [InternalName("userInformed")]
-public bool UserInformed { get; set; }
+public Boolean UserInformed { get; set; }
 
 [InternalName("points")]
-public int Points { get; set; }
+public Int32 Points { get; set; }
 
 }
 }

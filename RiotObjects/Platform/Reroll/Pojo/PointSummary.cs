@@ -39,19 +39,19 @@ callback(this);
 }
 
 [InternalName("pointsToNextRoll")]
-public double PointsToNextRoll { get; set; }
+public Double PointsToNextRoll { get; set; }
 
 [InternalName("maxRolls")]
-public int MaxRolls { get; set; }
+public Int32 MaxRolls { get; set; }
 
 [InternalName("numberOfRolls")]
-public int NumberOfRolls { get; set; }
+public Int32 NumberOfRolls { get; set; }
 
 [InternalName("pointsCostToRoll")]
-public double PointsCostToRoll { get; set; }
+public Double PointsCostToRoll { get; set; }
 
 [InternalName("currentPoints")]
-public double CurrentPoints { get; set; }
+public Double CurrentPoints { get; set; }
 
 }
 }

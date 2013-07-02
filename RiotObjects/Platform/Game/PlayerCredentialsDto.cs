@@ -42,43 +42,43 @@ callback(this);
 public object EncryptionKey { get; set; }
 
 [InternalName("gameId")]
-public double GameId { get; set; }
+public Double GameId { get; set; }
 
 [InternalName("lastSelectedSkinIndex")]
-public int LastSelectedSkinIndex { get; set; }
+public Int32 LastSelectedSkinIndex { get; set; }
 
 [InternalName("serverIp")]
 public object ServerIp { get; set; }
 
 [InternalName("observer")]
-public bool Observer { get; set; }
+public Boolean Observer { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 [InternalName("observerServerIp")]
-public string ObserverServerIp { get; set; }
+public String ObserverServerIp { get; set; }
 
 [InternalName("handshakeToken")]
 public object HandshakeToken { get; set; }
 
 [InternalName("playerId")]
-public double PlayerId { get; set; }
+public Double PlayerId { get; set; }
 
 [InternalName("serverPort")]
-public int ServerPort { get; set; }
+public Int32 ServerPort { get; set; }
 
 [InternalName("observerServerPort")]
-public int ObserverServerPort { get; set; }
+public Int32 ObserverServerPort { get; set; }
 
 [InternalName("summonerName")]
 public object SummonerName { get; set; }
 
 [InternalName("observerEncryptionKey")]
-public string ObserverEncryptionKey { get; set; }
+public String ObserverEncryptionKey { get; set; }
 
 [InternalName("championId")]
-public int ChampionId { get; set; }
+public Int32 ChampionId { get; set; }
 
 }
 }

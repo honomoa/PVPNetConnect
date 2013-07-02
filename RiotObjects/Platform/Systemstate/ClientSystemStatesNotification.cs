@@ -39,16 +39,16 @@ callback(this);
 }
 
 [InternalName("championTradeThroughLCDS")]
-public bool ChampionTradeThroughLCDS { get; set; }
+public Boolean ChampionTradeThroughLCDS { get; set; }
 
 [InternalName("practiceGameEnabled")]
-public bool PracticeGameEnabled { get; set; }
+public Boolean PracticeGameEnabled { get; set; }
 
 [InternalName("advancedTutorialEnabled")]
-public bool AdvancedTutorialEnabled { get; set; }
+public Boolean AdvancedTutorialEnabled { get; set; }
 
 [InternalName("minNumPlayersForPracticeGame")]
-public int MinNumPlayersForPracticeGame { get; set; }
+public Int32 MinNumPlayersForPracticeGame { get; set; }
 
 [InternalName("practiceGameTypeConfigIdList")]
 public Int32[] PracticeGameTypeConfigIdList { get; set; }
@@ -81,7 +81,7 @@ public Int32[] EnabledQueueIdsList { get; set; }
 public Int32[] UnobtainableChampionSkinIDList { get; set; }
 
 [InternalName("archivedStatsEnabled")]
-public bool ArchivedStatsEnabled { get; set; }
+public Boolean ArchivedStatsEnabled { get; set; }
 
 [InternalName("queueThrottleDTO")]
 public Dictionary<String, Object> QueueThrottleDTO { get; set; }
@@ -90,79 +90,79 @@ public Dictionary<String, Object> QueueThrottleDTO { get; set; }
 public Dictionary<String, Object>[] GameMapEnabledDTOList { get; set; }
 
 [InternalName("storeCustomerEnabled")]
-public bool StoreCustomerEnabled { get; set; }
+public Boolean StoreCustomerEnabled { get; set; }
 
 [InternalName("socialIntegrationEnabled")]
-public bool SocialIntegrationEnabled { get; set; }
+public Boolean SocialIntegrationEnabled { get; set; }
 
 [InternalName("runeUniquePerSpellBook")]
-public bool RuneUniquePerSpellBook { get; set; }
+public Boolean RuneUniquePerSpellBook { get; set; }
 
 [InternalName("tribunalEnabled")]
-public bool TribunalEnabled { get; set; }
+public Boolean TribunalEnabled { get; set; }
 
 [InternalName("observerModeEnabled")]
-public bool ObserverModeEnabled { get; set; }
+public Boolean ObserverModeEnabled { get; set; }
 
 [InternalName("spectatorSlotLimit")]
-public int SpectatorSlotLimit { get; set; }
+public Int32 SpectatorSlotLimit { get; set; }
 
 [InternalName("clientHeartBeatRateSeconds")]
-public int ClientHeartBeatRateSeconds { get; set; }
+public Int32 ClientHeartBeatRateSeconds { get; set; }
 
 [InternalName("observableGameModes")]
 public String[] ObservableGameModes { get; set; }
 
 [InternalName("observableCustomGameModes")]
-public string ObservableCustomGameModes { get; set; }
+public String ObservableCustomGameModes { get; set; }
 
 [InternalName("teamServiceEnabled")]
-public bool TeamServiceEnabled { get; set; }
+public Boolean TeamServiceEnabled { get; set; }
 
 [InternalName("leagueServiceEnabled")]
-public bool LeagueServiceEnabled { get; set; }
+public Boolean LeagueServiceEnabled { get; set; }
 
 [InternalName("modularGameModeEnabled")]
-public bool ModularGameModeEnabled { get; set; }
+public Boolean ModularGameModeEnabled { get; set; }
 
 [InternalName("riotDataServiceDataSendProbability")]
 public int RiotDataServiceDataSendProbability { get; set; }
 
 [InternalName("displayPromoGamesPlayedEnabled")]
-public bool DisplayPromoGamesPlayedEnabled { get; set; }
+public Boolean DisplayPromoGamesPlayedEnabled { get; set; }
 
 [InternalName("masteryPageOnServer")]
-public bool MasteryPageOnServer { get; set; }
+public Boolean MasteryPageOnServer { get; set; }
 
 [InternalName("maxMasteryPagesOnServer")]
-public int MaxMasteryPagesOnServer { get; set; }
+public Int32 MaxMasteryPagesOnServer { get; set; }
 
 [InternalName("tournamentSendStatsEnabled")]
-public bool TournamentSendStatsEnabled { get; set; }
+public Boolean TournamentSendStatsEnabled { get; set; }
 
 [InternalName("replayServiceAddress")]
-public string ReplayServiceAddress { get; set; }
+public String ReplayServiceAddress { get; set; }
 
 [InternalName("kudosEnabled")]
-public bool KudosEnabled { get; set; }
+public Boolean KudosEnabled { get; set; }
 
 [InternalName("buddyNotesEnabled")]
-public bool BuddyNotesEnabled { get; set; }
+public Boolean BuddyNotesEnabled { get; set; }
 
 [InternalName("localeSpecificChatRoomsEnabled")]
-public bool LocaleSpecificChatRoomsEnabled { get; set; }
+public Boolean LocaleSpecificChatRoomsEnabled { get; set; }
 
 [InternalName("replaySystemStates")]
 public Dictionary<String, Object> ReplaySystemStates { get; set; }
 
 [InternalName("sendFeedbackEventsEnabled")]
-public bool SendFeedbackEventsEnabled { get; set; }
+public Boolean SendFeedbackEventsEnabled { get; set; }
 
 [InternalName("knownGeographicGameServerRegions")]
 public String[] KnownGeographicGameServerRegions { get; set; }
 
 [InternalName("leaguesDecayMessagingEnabled")]
-public bool LeaguesDecayMessagingEnabled { get; set; }
+public Boolean LeaguesDecayMessagingEnabled { get; set; }
 
 }
 }

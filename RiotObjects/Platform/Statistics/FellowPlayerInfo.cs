@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("championId")]
-public double ChampionId { get; set; }
+public Double ChampionId { get; set; }
 
 [InternalName("teamId")]
-public int TeamId { get; set; }
+public Int32 TeamId { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

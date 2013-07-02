@@ -39,37 +39,37 @@ callback(this);
 }
 
 [InternalName("gameMode")]
-public string GameMode { get; set; }
+public String GameMode { get; set; }
 
 [InternalName("mapId")]
-public int MapId { get; set; }
+public Int32 MapId { get; set; }
 
 [InternalName("assists")]
-public int Assists { get; set; }
+public Int32 Assists { get; set; }
 
 [InternalName("opposingTeamName")]
-public string OpposingTeamName { get; set; }
+public String OpposingTeamName { get; set; }
 
 [InternalName("invalid")]
-public bool Invalid { get; set; }
+public Boolean Invalid { get; set; }
 
 [InternalName("deaths")]
-public int Deaths { get; set; }
+public Int32 Deaths { get; set; }
 
 [InternalName("gameId")]
-public double GameId { get; set; }
+public Double GameId { get; set; }
 
 [InternalName("kills")]
-public int Kills { get; set; }
+public Int32 Kills { get; set; }
 
 [InternalName("win")]
-public bool Win { get; set; }
+public Boolean Win { get; set; }
 
 [InternalName("date")]
-public double Date { get; set; }
+public Double Date { get; set; }
 
 [InternalName("opposingTeamKills")]
-public int OpposingTeamKills { get; set; }
+public Int32 OpposingTeamKills { get; set; }
 
 }
 }

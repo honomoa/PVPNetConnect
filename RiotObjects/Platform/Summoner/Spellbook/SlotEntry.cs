@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Summoner;
-using PVPNetConnect.RiotObjects.Platform.Catalog.Runes;
 
 namespace PVPNetConnect.RiotObjects.Platform.Summoner.Spellbook
 {
@@ -41,16 +39,16 @@ callback(this);
 }
 
 [InternalName("runeId")]
-public int RuneId { get; set; }
+public Int32 RuneId { get; set; }
 
 [InternalName("runeSlotId")]
-public int RuneSlotId { get; set; }
+public Int32 RuneSlotId { get; set; }
 
 [InternalName("runeSlot")]
-public RuneSlot RuneSlot { get; set; }
+public object RuneSlot { get; set; }
 
 [InternalName("rune")]
-public Rune Rune { get; set; }
+public object Rune { get; set; }
 
 }
 }

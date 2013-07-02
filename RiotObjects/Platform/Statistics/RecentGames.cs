@@ -49,7 +49,7 @@ public TypedObject PlayerGameStatsMap { get; set; }
 public List<PlayerGameStats> GameStatistics { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 }
 }

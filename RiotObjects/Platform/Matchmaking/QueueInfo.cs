@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("waitTime")]
-public double WaitTime { get; set; }
+public Double WaitTime { get; set; }
 
 [InternalName("queueId")]
-public double QueueId { get; set; }
+public Double QueueId { get; set; }
 
 [InternalName("queueLength")]
-public int QueueLength { get; set; }
+public Int32 QueueLength { get; set; }
 
 }
 }

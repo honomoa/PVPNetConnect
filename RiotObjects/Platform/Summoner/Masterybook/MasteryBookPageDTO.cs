@@ -42,19 +42,19 @@ callback(this);
 public List<TalentEntry> TalentEntries { get; set; }
 
 [InternalName("pageId")]
-public double PageId { get; set; }
+public Double PageId { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("current")]
-public bool Current { get; set; }
+public Boolean Current { get; set; }
 
 [InternalName("createDate")]
-public DateTime CreateDate { get; set; }
+public object CreateDate { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

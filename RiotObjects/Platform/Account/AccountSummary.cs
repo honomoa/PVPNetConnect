@@ -39,31 +39,31 @@ callback(this);
 }
 
 [InternalName("groupCount")]
-public int GroupCount { get; set; }
+public Int32 GroupCount { get; set; }
 
 [InternalName("username")]
-public string Username { get; set; }
+public String Username { get; set; }
 
 [InternalName("accountId")]
-public double AccountId { get; set; }
+public Double AccountId { get; set; }
 
 [InternalName("summonerInternalName")]
 public object SummonerInternalName { get; set; }
 
 [InternalName("admin")]
-public bool Admin { get; set; }
+public Boolean Admin { get; set; }
 
 [InternalName("hasBetaAccess")]
-public bool HasBetaAccess { get; set; }
+public Boolean HasBetaAccess { get; set; }
 
 [InternalName("summonerName")]
 public object SummonerName { get; set; }
 
 [InternalName("partnerMode")]
-public bool PartnerMode { get; set; }
+public Boolean PartnerMode { get; set; }
 
 [InternalName("needsPasswordReset")]
-public bool NeedsPasswordReset { get; set; }
+public Boolean NeedsPasswordReset { get; set; }
 
 }
 }

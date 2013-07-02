@@ -48,10 +48,10 @@ public LeaverPenaltyStats LeaverPenaltyStats { get; set; }
 public DateTime PreviousFirstWinOfDay { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 [InternalName("dodgeStreak")]
-public int DodgeStreak { get; set; }
+public Int32 DodgeStreak { get; set; }
 
 [InternalName("dodgePenaltyDate")]
 public object DodgePenaltyDate { get; set; }

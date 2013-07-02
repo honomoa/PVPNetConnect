@@ -42,7 +42,7 @@ callback(this);
 public object GameSpecificLoyaltyRewards { get; set; }
 
 [InternalName("reconnectDelay")]
-public int ReconnectDelay { get; set; }
+public Int32 ReconnectDelay { get; set; }
 
 [InternalName("lastModifiedDate")]
 public object LastModifiedDate { get; set; }
@@ -54,7 +54,7 @@ public GameDTO Game { get; set; }
 public PlayerCredentialsDto PlayerCredentials { get; set; }
 
 [InternalName("gameName")]
-public string GameName { get; set; }
+public String GameName { get; set; }
 
 [InternalName("connectivityStateEnum")]
 public object ConnectivityStateEnum { get; set; }

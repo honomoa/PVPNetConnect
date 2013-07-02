@@ -39,25 +39,25 @@ callback(this);
 }
 
 [InternalName("xpBoostEndDate")]
-public double XpBoostEndDate { get; set; }
+public Double XpBoostEndDate { get; set; }
 
 [InternalName("xpBoostPerWinCount")]
-public int XpBoostPerWinCount { get; set; }
+public Int32 XpBoostPerWinCount { get; set; }
 
 [InternalName("xpLoyaltyBoost")]
-public int XpLoyaltyBoost { get; set; }
+public Int32 XpLoyaltyBoost { get; set; }
 
 [InternalName("ipBoostPerWinCount")]
-public int IpBoostPerWinCount { get; set; }
+public Int32 IpBoostPerWinCount { get; set; }
 
 [InternalName("ipLoyaltyBoost")]
-public int IpLoyaltyBoost { get; set; }
+public Int32 IpLoyaltyBoost { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 [InternalName("ipBoostEndDate")]
-public double IpBoostEndDate { get; set; }
+public Double IpBoostEndDate { get; set; }
 
 }
 }

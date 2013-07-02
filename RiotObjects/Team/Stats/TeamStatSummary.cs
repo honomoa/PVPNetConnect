@@ -43,7 +43,7 @@ callback(this);
 public List<TeamStatDetail> TeamStatDetails { get; set; }
 
 [InternalName("teamIdString")]
-public string TeamIdString { get; set; }
+public String TeamIdString { get; set; }
 
 [InternalName("teamId")]
 public TeamId TeamId { get; set; }

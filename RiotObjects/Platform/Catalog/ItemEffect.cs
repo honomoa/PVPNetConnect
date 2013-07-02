@@ -39,19 +39,19 @@ callback(this);
 }
 
 [InternalName("effectId")]
-public int EffectId { get; set; }
+public Int32 EffectId { get; set; }
 
 [InternalName("itemEffectId")]
-public int ItemEffectId { get; set; }
+public Int32 ItemEffectId { get; set; }
 
 [InternalName("effect")]
 public Effect Effect { get; set; }
 
 [InternalName("value")]
-public string Value { get; set; }
+public String Value { get; set; }
 
 [InternalName("itemId")]
-public int ItemId { get; set; }
+public Int32 ItemId { get; set; }
 
 }
 }

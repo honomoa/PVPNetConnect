@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PVPNetConnect.RiotObjects.Leagues.Pojo;
 
 namespace PVPNetConnect.RiotObjects.Platform.Leagues.Client.Dto
 {
@@ -39,7 +40,7 @@ callback(this);
 }
 
 [InternalName("summonerLeagues")]
-public List<object> SummonerLeagues { get; set; }
+public List<LeagueListDTO> SummonerLeagues { get; set; }
 
 }
 }

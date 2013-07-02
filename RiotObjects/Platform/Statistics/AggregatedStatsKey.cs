@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("gameMode")]
-public string GameMode { get; set; }
+public String GameMode { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 [InternalName("gameModeString")]
-public string GameModeString { get; set; }
+public String GameModeString { get; set; }
 
 }
 }

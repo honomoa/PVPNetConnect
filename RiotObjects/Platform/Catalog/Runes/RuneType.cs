@@ -39,10 +39,10 @@ callback(this);
 }
 
 [InternalName("runeTypeId")]
-public int RuneTypeId { get; set; }
+public Int32 RuneTypeId { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 }
 }

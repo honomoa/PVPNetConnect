@@ -39,25 +39,25 @@ callback(this);
 }
 
 [InternalName("seasonTwoTier")]
-public string SeasonTwoTier { get; set; }
+public String SeasonTwoTier { get; set; }
 
 [InternalName("internalName")]
-public string InternalName { get; set; }
+public String InternalName { get; set; }
 
 [InternalName("seasonOneTier")]
-public string SeasonOneTier { get; set; }
+public String SeasonOneTier { get; set; }
 
 [InternalName("acctId")]
-public double AcctId { get; set; }
+public Double AcctId { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("sumId")]
-public double SumId { get; set; }
+public Double SumId { get; set; }
 
 [InternalName("profileIconId")]
-public int ProfileIconId { get; set; }
+public Int32 ProfileIconId { get; set; }
 
 }
 }

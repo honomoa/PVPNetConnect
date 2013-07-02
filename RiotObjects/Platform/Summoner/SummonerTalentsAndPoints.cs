@@ -39,7 +39,7 @@ callback(this);
 }
 
 [InternalName("talentPoints")]
-public int TalentPoints { get; set; }
+public Int32 TalentPoints { get; set; }
 
 [InternalName("modifyDate")]
 public DateTime ModifyDate { get; set; }
@@ -48,7 +48,7 @@ public DateTime ModifyDate { get; set; }
 public DateTime CreateDate { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

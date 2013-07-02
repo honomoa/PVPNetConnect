@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("pickTurn")]
-public int PickTurn { get; set; }
+public Int32 PickTurn { get; set; }
 
 [InternalName("championId")]
-public int ChampionId { get; set; }
+public Int32 ChampionId { get; set; }
 
 [InternalName("teamId")]
-public int TeamId { get; set; }
+public Int32 TeamId { get; set; }
 
 }
 }

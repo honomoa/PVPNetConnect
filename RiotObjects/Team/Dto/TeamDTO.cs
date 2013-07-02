@@ -44,10 +44,10 @@ callback(this);
 public TeamStatSummary TeamStatSummary { get; set; }
 
 [InternalName("status")]
-public string Status { get; set; }
+public String Status { get; set; }
 
 [InternalName("tag")]
-public string Tag { get; set; }
+public String Tag { get; set; }
 
 [InternalName("roster")]
 public RosterDTO Roster { get; set; }
@@ -68,19 +68,19 @@ public TeamId TeamId { get; set; }
 public DateTime LastJoinDate { get; set; }
 
 [InternalName("secondLastJoinDate")]
-public object SecondLastJoinDate { get; set; }
+public DateTime SecondLastJoinDate { get; set; }
 
 [InternalName("secondsUntilEligibleForDeletion")]
-public double SecondsUntilEligibleForDeletion { get; set; }
+public Double SecondsUntilEligibleForDeletion { get; set; }
 
 [InternalName("matchHistory")]
 public List<MatchHistorySummary> MatchHistory { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("thirdLastJoinDate")]
-public object ThirdLastJoinDate { get; set; }
+public DateTime ThirdLastJoinDate { get; set; }
 
 [InternalName("createDate")]
 public DateTime CreateDate { get; set; }

@@ -46,16 +46,16 @@ public DateTime Purchased { get; set; }
 public DateTime PurchaseDate { get; set; }
 
 [InternalName("runeId")]
-public int RuneId { get; set; }
+public Int32 RuneId { get; set; }
 
 [InternalName("quantity")]
-public int Quantity { get; set; }
+public Int32 Quantity { get; set; }
 
 [InternalName("rune")]
 public Rune Rune { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

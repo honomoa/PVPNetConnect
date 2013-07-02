@@ -40,10 +40,10 @@ callback(this);
 }
 
 [InternalName("id")]
-public int Id { get; set; }
+public Int32 Id { get; set; }
 
 [InternalName("minLevel")]
-public int MinLevel { get; set; }
+public Int32 MinLevel { get; set; }
 
 [InternalName("runeType")]
 public RuneType RuneType { get; set; }

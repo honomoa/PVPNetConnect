@@ -6,7 +6,7 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Team
 {
 
-public class TeamId : RiotGamesObject
+public class CreatedTeam : RiotGamesObject
 {
 public override string TypeName
 {
@@ -16,19 +16,19 @@ return this.type;
 }
 }
 
-private string type = "com.riotgames.team.TeamId";
+private string type = "com.riotgames.team.CreatedTeam";
 
-public TeamId(Callback callback)
+public CreatedTeam(Callback callback)
 {
 this.callback = callback;
 }
 
-public TeamId(TypedObject result)
+public CreatedTeam(TypedObject result)
 {
 base.SetFields(this, result);
 }
 
-public delegate void Callback(TeamId result);
+public delegate void Callback(CreatedTeam result);
 
 private Callback callback;
 
@@ -38,8 +38,11 @@ base.SetFields(this, result);
 callback(this);
 }
 
-[InternalName("fullId")]
-public String FullId { get; set; }
+[InternalName("timeStamp")]
+public Double TimeStamp { get; set; }
+
+[InternalName("teamId")]
+public TeamId TeamId { get; set; }
 
 }
 }

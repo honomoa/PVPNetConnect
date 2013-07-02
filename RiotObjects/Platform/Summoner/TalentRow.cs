@@ -39,19 +39,19 @@ callback(this);
 }
 
 [InternalName("index")]
-public int Index { get; set; }
+public Int32 Index { get; set; }
 
 [InternalName("talents")]
 public List<Talent> Talents { get; set; }
 
 [InternalName("tltGroupId")]
-public int TltGroupId { get; set; }
+public Int32 TltGroupId { get; set; }
 
 [InternalName("pointsToActivate")]
-public int PointsToActivate { get; set; }
+public Int32 PointsToActivate { get; set; }
 
 [InternalName("tltRowId")]
-public int TltRowId { get; set; }
+public Int32 TltRowId { get; set; }
 
 }
 }

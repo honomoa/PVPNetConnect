@@ -39,58 +39,58 @@ callback(this);
 }
 
 [InternalName("previousDayLeaguePosition")]
-public int PreviousDayLeaguePosition { get; set; }
+public Int32 PreviousDayLeaguePosition { get; set; }
 
 [InternalName("timeLastDecayMessageShown")]
-public double TimeLastDecayMessageShown { get; set; }
+public Double TimeLastDecayMessageShown { get; set; }
 
 [InternalName("hotStreak")]
-public bool HotStreak { get; set; }
+public Boolean HotStreak { get; set; }
 
 [InternalName("leagueName")]
-public string LeagueName { get; set; }
+public String LeagueName { get; set; }
 
 [InternalName("miniSeries")]
 public object MiniSeries { get; set; }
 
 [InternalName("tier")]
-public string Tier { get; set; }
+public String Tier { get; set; }
 
 [InternalName("freshBlood")]
-public bool FreshBlood { get; set; }
+public Boolean FreshBlood { get; set; }
 
 [InternalName("lastPlayed")]
-public double LastPlayed { get; set; }
+public Double LastPlayed { get; set; }
 
 [InternalName("playerOrTeamId")]
-public string PlayerOrTeamId { get; set; }
+public String PlayerOrTeamId { get; set; }
 
 [InternalName("leaguePoints")]
-public int LeaguePoints { get; set; }
+public Int32 LeaguePoints { get; set; }
 
 [InternalName("inactive")]
-public bool Inactive { get; set; }
+public Boolean Inactive { get; set; }
 
 [InternalName("rank")]
-public string Rank { get; set; }
+public String Rank { get; set; }
 
 [InternalName("veteran")]
-public bool Veteran { get; set; }
+public Boolean Veteran { get; set; }
 
 [InternalName("queueType")]
-public string QueueType { get; set; }
+public String QueueType { get; set; }
 
 [InternalName("losses")]
-public int Losses { get; set; }
+public Int32 Losses { get; set; }
 
 [InternalName("timeUntilDecay")]
-public double TimeUntilDecay { get; set; }
+public Double TimeUntilDecay { get; set; }
 
 [InternalName("playerOrTeamName")]
-public string PlayerOrTeamName { get; set; }
+public String PlayerOrTeamName { get; set; }
 
 [InternalName("wins")]
-public int Wins { get; set; }
+public Int32 Wins { get; set; }
 
 }
 }

@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("statType")]
-public string StatType { get; set; }
+public String StatType { get; set; }
 
 [InternalName("count")]
-public double Count { get; set; }
+public Double Count { get; set; }
 
 [InternalName("value")]
-public double Value { get; set; }
+public Double Value { get; set; }
 
 }
 }

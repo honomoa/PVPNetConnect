@@ -39,49 +39,49 @@ callback(this);
 }
 
 [InternalName("seasonTwoTier")]
-public string SeasonTwoTier { get; set; }
+public String SeasonTwoTier { get; set; }
 
 [InternalName("internalName")]
-public string InternalName { get; set; }
+public String InternalName { get; set; }
 
 [InternalName("acctId")]
-public double AcctId { get; set; }
+public Double AcctId { get; set; }
 
 [InternalName("helpFlag")]
-public bool HelpFlag { get; set; }
+public Boolean HelpFlag { get; set; }
 
 [InternalName("sumId")]
-public double SumId { get; set; }
+public Double SumId { get; set; }
 
 [InternalName("profileIconId")]
-public int ProfileIconId { get; set; }
+public Int32 ProfileIconId { get; set; }
 
 [InternalName("displayEloQuestionaire")]
-public bool DisplayEloQuestionaire { get; set; }
+public Boolean DisplayEloQuestionaire { get; set; }
 
 [InternalName("lastGameDate")]
 public DateTime LastGameDate { get; set; }
 
 [InternalName("advancedTutorialFlag")]
-public bool AdvancedTutorialFlag { get; set; }
+public Boolean AdvancedTutorialFlag { get; set; }
 
 [InternalName("revisionDate")]
 public DateTime RevisionDate { get; set; }
 
 [InternalName("revisionId")]
-public double RevisionId { get; set; }
+public Double RevisionId { get; set; }
 
 [InternalName("seasonOneTier")]
-public string SeasonOneTier { get; set; }
+public String SeasonOneTier { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("nameChangeFlag")]
-public bool NameChangeFlag { get; set; }
+public Boolean NameChangeFlag { get; set; }
 
 [InternalName("tutorialFlag")]
-public bool TutorialFlag { get; set; }
+public Boolean TutorialFlag { get; set; }
 
 [InternalName("socialNetworkUserIds")]
 public List<object> SocialNetworkUserIds { get; set; }

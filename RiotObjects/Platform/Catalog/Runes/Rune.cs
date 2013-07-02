@@ -46,31 +46,31 @@ public object ImagePath { get; set; }
 public object ToolTip { get; set; }
 
 [InternalName("tier")]
-public int Tier { get; set; }
+public Int32 Tier { get; set; }
 
 [InternalName("itemId")]
-public int ItemId { get; set; }
+public Int32 ItemId { get; set; }
 
 [InternalName("runeType")]
 public RuneType RuneType { get; set; }
 
 [InternalName("duration")]
-public int Duration { get; set; }
+public Int32 Duration { get; set; }
 
 [InternalName("gameCode")]
-public int GameCode { get; set; }
+public Int32 GameCode { get; set; }
 
 [InternalName("itemEffects")]
 public List<ItemEffect> ItemEffects { get; set; }
 
 [InternalName("baseType")]
-public string BaseType { get; set; }
+public String BaseType { get; set; }
 
 [InternalName("description")]
-public string Description { get; set; }
+public String Description { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("uses")]
 public object Uses { get; set; }

@@ -42,7 +42,7 @@ callback(this);
 public List<TimeTrackedStat> TimeTrackedStats { get; set; }
 
 [InternalName("promoGamesPlayed")]
-public int PromoGamesPlayed { get; set; }
+public Int32 PromoGamesPlayed { get; set; }
 
 [InternalName("promoGamesPlayedLastUpdated")]
 public object PromoGamesPlayedLastUpdated { get; set; }

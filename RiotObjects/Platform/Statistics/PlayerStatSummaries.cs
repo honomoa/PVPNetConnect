@@ -42,7 +42,7 @@ callback(this);
 public List<PlayerStatSummary> PlayerStatSummarySet { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 }
 }

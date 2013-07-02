@@ -48,10 +48,10 @@ public object PlayerName { get; set; }
 public DateTime InviteDate { get; set; }
 
 [InternalName("status")]
-public string Status { get; set; }
+public String Status { get; set; }
 
 [InternalName("playerId")]
-public double PlayerId { get; set; }
+public Double PlayerId { get; set; }
 
 }
 }

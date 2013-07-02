@@ -39,22 +39,22 @@ callback(this);
 }
 
 [InternalName("queue")]
-public string Queue { get; set; }
+public String Queue { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("tier")]
-public string Tier { get; set; }
+public String Tier { get; set; }
 
 [InternalName("requestorsRank")]
-public string RequestorsRank { get; set; }
+public String RequestorsRank { get; set; }
 
 [InternalName("entries")]
 public List<LeagueItemDTO> Entries { get; set; }
 
 [InternalName("requestorsName")]
-public object RequestorsName { get; set; }
+public String RequestorsName { get; set; }
 
 }
 }

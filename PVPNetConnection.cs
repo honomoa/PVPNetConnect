@@ -32,6 +32,14 @@ using PVPNetConnect.RiotObjects.Platform.Leagues.Client.Dto;
 using PVPNetConnect.RiotObjects.Platform.Statistics;
 using PVPNetConnect.RiotObjects.Platform.Summoner.Runes;
 using PVPNetConnect.RiotObjects.Platform.Game;
+using PVPNetConnect.RiotObjects.Team.Dto;
+using PVPNetConnect.RiotObjects.Platform.Matchmaking;
+using PVPNetConnect.RiotObjects.Team;
+using PVPNetConnect.RiotObjects.Platform.Harassment;
+using PVPNetConnect.RiotObjects.Platform.Reroll.Pojo;
+using PVPNetConnect.RiotObjects.Leagues.Pojo;
+using PVPNetConnect.RiotObjects.Platform.Summoner.Boost;
+using PVPNetConnect.RiotObjects.Platform.Login;
 
 
 
@@ -127,7 +135,7 @@ namespace PVPNetConnect
                }
                catch
                {
-                  Error("Riots servers are currently unabailable.", ErrorType.AuthKey);
+                  Error("Riots servers are currently unavailable.", ErrorType.AuthKey);
                   Disconnect();
                   return;
                }
@@ -778,7 +786,13 @@ namespace PVPNetConnect
          ret.Add("timeToLive", 0);
          ret.Add("clientId", null);
          ret.Add("destination", destination);
-         ret.Add("body", body);
+         if (body is RiotGamesObject)
+         {
+            RiotGamesObject bod = (RiotGamesObject)body;
+            ret.Add("body", bod.GetBaseTypedObject());
+         }
+         else
+            ret.Add("body", body);
          ret.Add("headers", headers);
 
          return ret;
@@ -1135,17 +1149,59 @@ namespace PVPNetConnect
 
       #endregion
 
+
+      /*
+      #region Private Client Methods
+      private void Login(AuthenticationCredentials arg0, Session.Callback callback)
+      {
+         Session cb = new Session(callback);
+         InvokeWithCallback("loginService", "login", new object[] { arg0 }, cb);
+      }
+
+      private async Task<Session> Login(AuthenticationCredentials arg0)
+      {
+         int Id = Invoke("loginService", "login", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         Session result = new Session(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+      #endregion
+      */
       #region Public Client Methods
 
-      //PVPNet/User Information Methods
+      public void GetSummonerNames(object[] summonerIDs, SummonerNames.Callback callback)
+      {
+         SummonerNames cb = new SummonerNames(callback);
+         InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
+      }
 
+      public void GetSummonerChatIdByName(string summonerName, UnclassedObject.Callback callback)
+      {
+         UnclassedObject cb = new UnclassedObject(callback);
+         InvokeWithCallback("summonerService", "getSummonerInternalNameByName", new object[] { summonerName }, cb);
+      }
+
+      public void GetSummonerSummaryByChatId(string summonerChatId, UnclassedObject.Callback callback)
+      {
+         UnclassedObject cb = new UnclassedObject(callback);
+         InvokeWithCallback("statisticsService", "getSummonerSummaryByInternalName", new object[] { summonerChatId }, cb);
+      }
+
+      #region No Arg Methods
+
+      // Get Login Data Packet
       public void GetLoginDataPacketForUser(LoginDataPacket.Callback callback)
       {
          LoginDataPacket cb = new LoginDataPacket(callback);
          InvokeWithCallback("clientFacadeService", "getLoginDataPacketForUser", new object[] { }, cb);
       }
 
-      public async Task<LoginDataPacket> GetLoginDataPacket()
+      public async Task<LoginDataPacket> GetLoginDataPacketForUser()
       {
          int Id = Invoke("clientFacadeService", "getLoginDataPacketForUser", new object[] { });
          while (!results.ContainsKey(Id))
@@ -1153,13 +1209,72 @@ namespace PVPNetConnect
             await Task.Delay(10);
          }
          TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
-         LoginDataPacket ldp = new LoginDataPacket(messageBody);
+         LoginDataPacket result = new LoginDataPacket(messageBody);
          results.Remove(Id);
-
-         return ldp;
+         return result;
       }
 
+      //Get Summoner Active Boosts
+      public void GetSumonerActiveBoosts(SummonerActiveBoostsDTO.Callback callback)
+      {
+         SummonerActiveBoostsDTO cb = new SummonerActiveBoostsDTO(callback);
+         InvokeWithCallback("inventoryService", "getSumonerActiveBoosts", new object[] { }, cb);
+      }
 
+      public async Task<SummonerActiveBoostsDTO> GetSumonerActiveBoosts()
+      {
+         int Id = Invoke("inventoryService", "getSumonerActiveBoosts", new object[] { });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SummonerActiveBoostsDTO result = new SummonerActiveBoostsDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+      
+      //Get My League Positions
+      public void GetMyLeaguePositions(SummonerLeagueItemsDTO.Callback callback)
+      {
+         SummonerLeagueItemsDTO cb = new SummonerLeagueItemsDTO(callback);
+         InvokeWithCallback("leaguesServiceProxy", "getMyLeaguePositions", new object[] { }, cb);
+      }
+
+      public async Task<SummonerLeagueItemsDTO> GetMyLeaguePositions()
+      {
+         int Id = Invoke("leaguesServiceProxy", "getMyLeaguePositions", new object[] { });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SummonerLeagueItemsDTO result = new SummonerLeagueItemsDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Create Player
+      public void CreatePlayer(PlayerDTO.Callback callback)
+      {
+         PlayerDTO cb = new PlayerDTO(callback);
+         InvokeWithCallback("summonerTeamService", "createPlayer", new object[] { }, cb);
+      }
+
+      public async Task<PlayerDTO> CreatePlayer()
+      {
+         int Id = Invoke("summonerTeamService", "createPlayer", new object[] { });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         PlayerDTO result = new PlayerDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get All My Leagues
       public void GetAllMyLeagues(SummonerLeaguesDTO.Callback callback)
       {
          SummonerLeaguesDTO cb = new SummonerLeaguesDTO(callback);
@@ -1174,52 +1289,211 @@ namespace PVPNetConnect
             await Task.Delay(10);
          }
          TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
-         SummonerLeaguesDTO myLeagues = new SummonerLeaguesDTO(messageBody);
+         SummonerLeaguesDTO result = new SummonerLeaguesDTO(messageBody);
          results.Remove(Id);
-
-         return myLeagues;
+         return result;
       }
 
-
-      public void GetAllLeaguesForPlayer(double summonerID, SummonerLeaguesDTO.Callback callback)
+      //Get Points Balance
+      public void GetPointsBalance(PointSummary.Callback callback)
       {
-         SummonerLeaguesDTO cb = new SummonerLeaguesDTO(callback);
-         InvokeWithCallback("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID }, cb);
+         PointSummary cb = new PointSummary(callback);
+         InvokeWithCallback("lcdsRerollService", "getPointsBalance", new object[] { }, cb);
       }
 
-      public async Task<SummonerLeaguesDTO> GetAllLeaguesForPlayer(double summonerID)
+      public async Task<PointSummary> GetPointsBalance()
       {
-         int Id = Invoke("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerID });
+         int Id = Invoke("lcdsRerollService", "getPointsBalance", new object[] { });
          while (!results.ContainsKey(Id))
          {
             await Task.Delay(10);
          }
          TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
-         SummonerLeaguesDTO leagues = new SummonerLeaguesDTO(messageBody);
+         PointSummary result = new PointSummary(messageBody);
          results.Remove(Id);
-
-         return leagues;
+         return result;
       }
 
-      public void GetAllPublicSummonerDataByAccount(double accountID, AllSummonerData.Callback callback)
+      #endregion
+
+      #region Summoner ID Methods
+
+      //Get Summoner Rune Inventory
+      public void GetSummonerRuneInventory(Double summonerId, SummonerRuneInventory.Callback callback)
+      {
+         SummonerRuneInventory cb = new SummonerRuneInventory(callback);
+         InvokeWithCallback("summonerRuneService", "getSummonerRuneInventory", new object[] { summonerId }, cb);
+      }
+
+      public async Task<SummonerRuneInventory> GetSummonerRuneInventory(Double summonerId)
+      {
+         int Id = Invoke("summonerRuneService", "getSummonerRuneInventory", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SummonerRuneInventory result = new SummonerRuneInventory(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get Mastery Book
+      public void GetMasteryBook(Double summonerId, MasteryBookDTO.Callback callback)
+      {
+         MasteryBookDTO cb = new MasteryBookDTO(callback);
+         InvokeWithCallback("masteryBookService", "getMasteryBook", new object[] { summonerId }, cb);
+      }
+
+      public async Task<MasteryBookDTO> GetMasteryBook(Double summonerId)
+      {
+         int Id = Invoke("masteryBookService", "getMasteryBook", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         MasteryBookDTO result = new MasteryBookDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get Recent Games
+      public void GetRecentGames(Double summonerId, RecentGames.Callback callback)
+      {
+         RecentGames cb = new RecentGames(callback);
+         InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { summonerId }, cb);
+      }
+
+      public async Task<RecentGames> GetRecentGames(Double summonerId)
+      {
+         int Id = Invoke("playerStatsService", "getRecentGames", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         RecentGames result = new RecentGames(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get All Leagues For Player
+      public void GetAllLeaguesForPlayer(Double summonerId, SummonerLeaguesDTO.Callback callback)
+      {
+         SummonerLeaguesDTO cb = new SummonerLeaguesDTO(callback);
+         InvokeWithCallback("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerId }, cb);
+      }
+
+      public async Task<SummonerLeaguesDTO> GetAllLeaguesForPlayer(Double summonerId)
+      {
+         int Id = Invoke("leaguesServiceProxy", "getAllLeaguesForPlayer", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SummonerLeaguesDTO result = new SummonerLeaguesDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Find Player
+      public void FindPlayer(Double summonerId, PlayerDTO.Callback callback)
+      {
+         PlayerDTO cb = new PlayerDTO(callback);
+         InvokeWithCallback("summonerTeamService", "findPlayer", new object[] { summonerId }, cb);
+      }
+
+      public async Task<PlayerDTO> FindPlayer(Double summonerId)
+      {
+         int Id = Invoke("summonerTeamService", "findPlayer", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         PlayerDTO result = new PlayerDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get Spell Book
+      public void GetSpellBook(Double summonerId, SpellBookDTO.Callback callback)
+      {
+         SpellBookDTO cb = new SpellBookDTO(callback);
+         InvokeWithCallback("spellBookService", "getSpellBook", new object[] { summonerId }, cb);
+      }
+
+      public async Task<SpellBookDTO> GetSpellBook(Double summonerId)
+      {
+         int Id = Invoke("spellBookService", "getSpellBook", new object[] { summonerId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SpellBookDTO result = new SpellBookDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      #endregion
+
+
+      #region Account ID Methods
+
+      //Get All Summoner Data By Account
+      public void GetAllSummonerDataByAccount(Double accountId, AllSummonerData.Callback callback)
       {
          AllSummonerData cb = new AllSummonerData(callback);
-         InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountID }, cb);
+         InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { accountId }, cb);
       }
 
-      public void GetAllSummonerDataByAccount(double accountID, AllSummonerData.Callback callback)
+      public async Task<AllSummonerData> GetAllSummonerDataByAccount(Double accountId)
       {
-         AllSummonerData cb = new AllSummonerData(callback);
-         InvokeWithCallback("summonerService", "getAllSummonerDataByAccount", new object[] { accountID }, cb);
+         int Id = Invoke("summonerService", "getAllSummonerDataByAccount", new object[] { accountId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         AllSummonerData result = new AllSummonerData(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void GetSummonerByName(string summonerName, PublicSummoner.Callback callback)
+      //Get All Public Summoner Data By Account
+      public void GetAllPublicSummonerDataByAccount(Double accountId, AllPublicSummonerDataDTO.Callback callback)
+      {
+         AllPublicSummonerDataDTO cb = new AllPublicSummonerDataDTO(callback);
+         InvokeWithCallback("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountId }, cb);
+      }
+
+      public async Task<AllPublicSummonerDataDTO> GetAllPublicSummonerDataByAccount(Double accountId)
+      {
+         int Id = Invoke("summonerService", "getAllPublicSummonerDataByAccount", new object[] { accountId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         AllPublicSummonerDataDTO result = new AllPublicSummonerDataDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      #endregion
+      
+
+      //Get Summoner By Name
+      public void GetSummonerByName(String summonerName, PublicSummoner.Callback callback)
       {
          PublicSummoner cb = new PublicSummoner(callback);
          InvokeWithCallback("summonerService", "getSummonerByName", new object[] { summonerName }, cb);
       }
 
-      public async Task<PublicSummoner> GetSummonerByName(string summonerName)
+      public async Task<PublicSummoner> GetSummonerByName(String summonerName)
       {
          int Id = Invoke("summonerService", "getSummonerByName", new object[] { summonerName });
          while (!results.ContainsKey(Id))
@@ -1227,86 +1501,256 @@ namespace PVPNetConnect
             await Task.Delay(10);
          }
          TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
-         PublicSummoner summoner = new PublicSummoner(messageBody);
+         PublicSummoner result = new PublicSummoner(messageBody);
          results.Remove(Id);
-
-         return summoner;
+         return result;
       }
 
 
-      public void GetSummonerNames(object[] summonerIDs, SummonerNames.Callback callback)
+      //Find Team By Id
+      public void FindTeamById(TeamId teamId, TeamDTO.Callback callback)
       {
-         SummonerNames cb = new SummonerNames(callback);
-         InvokeWithCallback("summonerService", "getSummonerNames", new object[] { summonerIDs }, cb);
+         TeamDTO cb = new TeamDTO(callback);
+         InvokeWithCallback("summonerTeamService", "findTeamById", new object[] { teamId }, cb);
       }
 
-      public void GetRecentGames(double accountID, RecentGames.Callback callback)
+      public async Task<TeamDTO> FindTeamById(TeamId teamId)
       {
-         RecentGames cb = new RecentGames(callback);
-         InvokeWithCallback("playerStatsService", "getRecentGames", new object[] { accountID }, cb);
+         int Id = Invoke("summonerTeamService", "findTeamById", new object[] { teamId });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         TeamDTO result = new TeamDTO(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void RetrievePlayerStatsByAccountId(double accountID, Seasons season, PlayerLifetimeStats.Callback callback)
+
+
+      /*
+      public void AttachToQueue(MatchMakerParams arg0, SearchingForMatchNotification.Callback callback)
       {
-         PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
-         InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { accountID, StringEnum.GetStringValue(season) }, cb);
+         SearchingForMatchNotification cb = new SearchingForMatchNotification(callback);
+         InvokeWithCallback("matchmakerService", "attachToQueue", new object[] { arg0 }, cb);
       }
 
-      public void GetAggregatedStats(double accountID, GameModes gameMode, Seasons season, AggregatedStats.Callback callback)
+      public async Task<SearchingForMatchNotification> AttachToQueue(MatchMakerParams arg0)
       {
-         AggregatedStats cb = new AggregatedStats(callback);
-         InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { accountID, StringEnum.GetStringValue(gameMode), StringEnum.GetStringValue(season) }, cb);
+         int Id = Invoke("matchmakerService", "attachToQueue", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SearchingForMatchNotification result = new SearchingForMatchNotification(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void RetrieveInProgressSpectatorGameInfo(string summonerName, PlatformGameLifecycleDTO.Callback callback)
+      
+      public void CreatePracticeGame(PracticeGameConfig arg0, GameDTO.Callback callback)
+      {
+         GameDTO cb = new GameDTO(callback);
+         InvokeWithCallback("gameService", "createPracticeGame", new object[] { arg0 }, cb);
+      }
+
+      public async Task<GameDTO> CreatePracticeGame(PracticeGameConfig arg0)
+      {
+         int Id = Invoke("gameService", "createPracticeGame", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         GameDTO result = new GameDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+      */
+
+
+      //Select Default Spell Book Page
+      public void SelectDefaultSpellBookPage(SpellBookPageDTO spellBookPage, SpellBookPageDTO.Callback callback)
+      {
+         SpellBookPageDTO cb = new SpellBookPageDTO(callback);
+         InvokeWithCallback("spellBookService", "selectDefaultSpellBookPage", new object[] { spellBookPage }, cb);
+      }
+
+      public async Task<SpellBookPageDTO> SelectDefaultSpellBookPage(SpellBookPageDTO spellBookPage)
+      {
+         int Id = Invoke("spellBookService", "selectDefaultSpellBookPage", new object[] { spellBookPage });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SpellBookPageDTO result = new SpellBookPageDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Retriece In Progress Spectator Game Info
+      public void RetrieveInProgressSpectatorGameInfo(String summonerName, PlatformGameLifecycleDTO.Callback callback)
       {
          PlatformGameLifecycleDTO cb = new PlatformGameLifecycleDTO(callback);
          InvokeWithCallback("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName }, cb);
       }
 
-      public void GetMasteryBook(double summonerID, MasteryBookDTO.Callback callback)
+      public async Task<PlatformGameLifecycleDTO> RetrieveInProgressSpectatorGameInfo(String summonerName)
       {
-         MasteryBookDTO cb = new MasteryBookDTO(callback);
-         InvokeWithCallback("masteryBookService", "getMasteryBook", new object[] { summonerID }, cb);
+         int Id = Invoke("gameService", "retrieveInProgressSpectatorGameInfo", new object[] { summonerName });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         PlatformGameLifecycleDTO result = new PlatformGameLifecycleDTO(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void GetSpellBook(double summonerID, SpellBookDTO.Callback callback)
+      //Get Challenger League
+      public void GetChallengerLeague(String arg0, LeagueListDTO.Callback callback)
       {
-         SpellBookDTO cb = new SpellBookDTO(callback);
-         InvokeWithCallback("spellBookService", "getSpellBook", new object[] { summonerID }, cb);
+         LeagueListDTO cb = new LeagueListDTO(callback);
+         InvokeWithCallback("leaguesServiceProxy", "getChallengerLeague", new object[] { arg0 }, cb);
       }
 
-      /*
-       public void RetrieveTopPlayedChampions(int accountID, GameModes gameMode, TopPlayedChampions.Callback callback)
-       {
-           TopPlayedChampions cb = new TopPlayedChampions(callback);
-           InvokeWithCallback("playerStatsService", "retrieveTopPlayedChampions", new object[] { accountID, StringEnum.GetStringValue(gameMode) }, cb);
-       }
-      */
-      public void GetSummonerChatIdByName(string summonerName, UnclassedObject.Callback callback)
+      public async Task<LeagueListDTO> GetChallengerLeague(String arg0)
       {
-         UnclassedObject cb = new UnclassedObject(callback);
-         InvokeWithCallback("summonerService", "getSummonerInternalNameByName", new object[] { summonerName }, cb);
+         int Id = Invoke("leaguesServiceProxy", "getChallengerLeague", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         LeagueListDTO result = new LeagueListDTO(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void GetSummonerSummaryByChatId(string summonerChatId, UnclassedObject.Callback callback)
+      //Get Latest Game Timer State
+      public void GetLatestGameTimerState(Double arg0, String arg1, Int32 arg2, GameDTO.Callback callback)
       {
-         UnclassedObject cb = new UnclassedObject(callback);
-         InvokeWithCallback("statisticsService", "getSummonerSummaryByInternalName", new object[] { summonerChatId }, cb);
+         GameDTO cb = new GameDTO(callback);
+         InvokeWithCallback("gameService", "getLatestGameTimerState", new object[] { arg0, arg1, arg2 }, cb);
       }
 
-
-      public void SaveMasteryBook(MasteryBookDTO book, MasteryBookDTO.Callback callback)
+      public async Task<GameDTO> GetLatestGameTimerState(Double arg0, String arg1, Int32 arg2)
       {
-         MasteryBookDTO cb = new MasteryBookDTO(callback);
-         InvokeWithCallback("masteryBookService", "saveMasteryBook", new object[] { book.GetBaseTypedObject() }, cb);
+         int Id = Invoke("gameService", "getLatestGameTimerState", new object[] { arg0, arg1, arg2 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         GameDTO result = new GameDTO(messageBody);
+         results.Remove(Id);
+         return result;
       }
 
-      public void GetSummonerRunes(double summonerID, SummonerRuneInventory.Callback callback)
+      //Start Champion Selection
+      public void StartChampionSelection(Double arg0, Int32 arg1, StartChampSelectDTO.Callback callback)
       {
-         SummonerRuneInventory cb = new SummonerRuneInventory(callback);
-         InvokeWithCallback("summonerRuneService", "getSummonerRuneInventory", new object[] { summonerID }, cb);
+         StartChampSelectDTO cb = new StartChampSelectDTO(callback);
+         InvokeWithCallback("gameService", "startChampionSelection", new object[] { arg0, arg1 }, cb);
       }
+
+      public async Task<StartChampSelectDTO> StartChampionSelection(Double arg0, Int32 arg1)
+      {
+         int Id = Invoke("gameService", "startChampionSelection", new object[] { arg0, arg1 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         StartChampSelectDTO result = new StartChampSelectDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get Leagues For Team
+      public void GetLeaguesForTeam(String arg0, SummonerLeaguesDTO.Callback callback)
+      {
+         SummonerLeaguesDTO cb = new SummonerLeaguesDTO(callback);
+         InvokeWithCallback("leaguesServiceProxy", "getLeaguesForTeam", new object[] { arg0 }, cb);
+      }
+
+      public async Task<SummonerLeaguesDTO> GetLeaguesForTeam(String arg0)
+      {
+         int Id = Invoke("leaguesServiceProxy", "getLeaguesForTeam", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         SummonerLeaguesDTO result = new SummonerLeaguesDTO(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Get Aggregated Stats
+      public void GetAggregatedStats(Int32 arg0, String arg1, String arg2, AggregatedStats.Callback callback)
+      {
+         AggregatedStats cb = new AggregatedStats(callback);
+         InvokeWithCallback("playerStatsService", "getAggregatedStats", new object[] { arg0, arg1, arg2 }, cb);
+      }
+
+      public async Task<AggregatedStats> GetAggregatedStats(Int32 arg0, String arg1, String arg2)
+      {
+         int Id = Invoke("playerStatsService", "getAggregatedStats", new object[] { arg0, arg1, arg2 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         AggregatedStats result = new AggregatedStats(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Retreive Player Stats By Account Id
+      public void RetrievePlayerStatsByAccountId(Int32 arg0, String arg1, PlayerLifetimeStats.Callback callback)
+      {
+         PlayerLifetimeStats cb = new PlayerLifetimeStats(callback);
+         InvokeWithCallback("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { arg0, arg1 }, cb);
+      }
+
+      public async Task<PlayerLifetimeStats> RetrievePlayerStatsByAccountId(Int32 arg0, String arg1)
+      {
+         int Id = Invoke("playerStatsService", "retrievePlayerStatsByAccountId", new object[] { arg0, arg1 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         PlayerLifetimeStats result = new PlayerLifetimeStats(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
+      //Call Cudos
+      public void CallKudos(String arg0, LcdsResponseString.Callback callback)
+      {
+         LcdsResponseString cb = new LcdsResponseString(callback);
+         InvokeWithCallback("clientFacadeService", "callKudos", new object[] { arg0 }, cb);
+      }
+
+      public async Task<LcdsResponseString> CallKudos(String arg0)
+      {
+         int Id = Invoke("clientFacadeService", "callKudos", new object[] { arg0 });
+         while (!results.ContainsKey(Id))
+         {
+            await Task.Delay(10);
+         }
+         TypedObject messageBody = results[Id].GetTO("data").GetTO("body");
+         LcdsResponseString result = new LcdsResponseString(messageBody);
+         results.Remove(Id);
+         return result;
+      }
+
 
       #endregion
 

@@ -39,19 +39,19 @@ callback(this);
 }
 
 [InternalName("secondsUntilEligibleForDeletion")]
-public double SecondsUntilEligibleForDeletion { get; set; }
+public Double SecondsUntilEligibleForDeletion { get; set; }
 
 [InternalName("memberStatusString")]
-public string MemberStatusString { get; set; }
+public String MemberStatusString { get; set; }
 
 [InternalName("tag")]
-public string Tag { get; set; }
+public String Tag { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("memberStatus")]
-public string MemberStatus { get; set; }
+public String MemberStatus { get; set; }
 
 [InternalName("teamId")]
 public TeamId TeamId { get; set; }

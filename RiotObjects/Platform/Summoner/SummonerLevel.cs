@@ -39,28 +39,28 @@ callback(this);
 }
 
 [InternalName("expTierMod")]
-public double ExpTierMod { get; set; }
+public Double ExpTierMod { get; set; }
 
 [InternalName("grantRp")]
-public double GrantRp { get; set; }
+public Double GrantRp { get; set; }
 
 [InternalName("expForLoss")]
-public double ExpForLoss { get; set; }
+public Double ExpForLoss { get; set; }
 
 [InternalName("summonerTier")]
-public double SummonerTier { get; set; }
+public Double SummonerTier { get; set; }
 
 [InternalName("infTierMod")]
-public double InfTierMod { get; set; }
+public Double InfTierMod { get; set; }
 
 [InternalName("expToNextLevel")]
-public double ExpToNextLevel { get; set; }
+public Double ExpToNextLevel { get; set; }
 
 [InternalName("expForWin")]
-public double ExpForWin { get; set; }
+public Double ExpForWin { get; set; }
 
 [InternalName("summonerLevel")]
-public double Level { get; set; }
+public Double Level { get; set; }
 
 }
 }

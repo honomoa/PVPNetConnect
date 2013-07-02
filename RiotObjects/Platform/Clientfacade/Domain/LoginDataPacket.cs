@@ -48,22 +48,22 @@ callback(this);
 public PlayerStatSummaries PlayerStatSummaries { get; set; }
 
 [InternalName("restrictedChatGamesRemaining")]
-public int RestrictedChatGamesRemaining { get; set; }
+public Int32 RestrictedChatGamesRemaining { get; set; }
 
 [InternalName("minutesUntilShutdown")]
-public int MinutesUntilShutdown { get; set; }
+public Int32 MinutesUntilShutdown { get; set; }
 
 [InternalName("minor")]
-public bool Minor { get; set; }
+public Boolean Minor { get; set; }
 
 [InternalName("maxPracticeGameSize")]
-public int MaxPracticeGameSize { get; set; }
+public Int32 MaxPracticeGameSize { get; set; }
 
 [InternalName("summonerCatalog")]
 public SummonerCatalog SummonerCatalog { get; set; }
 
 [InternalName("ipBalance")]
-public double IpBalance { get; set; }
+public Double IpBalance { get; set; }
 
 [InternalName("reconnectInfo")]
 public object ReconnectInfo { get; set; }
@@ -78,79 +78,79 @@ public List<object> SimpleMessages { get; set; }
 public AllSummonerData AllSummonerData { get; set; }
 
 [InternalName("customMinutesLeftToday")]
-public int CustomMinutesLeftToday { get; set; }
+public Int32 CustomMinutesLeftToday { get; set; }
 
 [InternalName("platformGameLifecycleDTO")]
 public object PlatformGameLifecycleDTO { get; set; }
 
 [InternalName("coOpVsAiMinutesLeftToday")]
-public int CoOpVsAiMinutesLeftToday { get; set; }
+public Int32 CoOpVsAiMinutesLeftToday { get; set; }
 
 [InternalName("bingeData")]
 public object BingeData { get; set; }
 
 [InternalName("inGhostGame")]
-public bool InGhostGame { get; set; }
+public Boolean InGhostGame { get; set; }
 
 [InternalName("leaverPenaltyLevel")]
-public int LeaverPenaltyLevel { get; set; }
+public Int32 LeaverPenaltyLevel { get; set; }
 
 [InternalName("bingePreventionSystemEnabledForClient")]
-public bool BingePreventionSystemEnabledForClient { get; set; }
+public Boolean BingePreventionSystemEnabledForClient { get; set; }
 
 [InternalName("pendingBadges")]
-public int PendingBadges { get; set; }
+public Int32 PendingBadges { get; set; }
 
 [InternalName("broadcastNotification")]
 public BroadcastNotification BroadcastNotification { get; set; }
 
 [InternalName("minutesUntilMidnight")]
-public int MinutesUntilMidnight { get; set; }
+public Int32 MinutesUntilMidnight { get; set; }
 
 [InternalName("timeUntilFirstWinOfDay")]
-public double TimeUntilFirstWinOfDay { get; set; }
+public Double TimeUntilFirstWinOfDay { get; set; }
 
 [InternalName("coOpVsAiMsecsUntilReset")]
-public double CoOpVsAiMsecsUntilReset { get; set; }
+public Double CoOpVsAiMsecsUntilReset { get; set; }
 
 [InternalName("clientSystemStates")]
 public ClientSystemStatesNotification ClientSystemStates { get; set; }
 
 [InternalName("bingeMinutesRemaining")]
-public double BingeMinutesRemaining { get; set; }
+public Double BingeMinutesRemaining { get; set; }
 
 [InternalName("pendingKudosDTO")]
 public PendingKudosDTO PendingKudosDTO { get; set; }
 
 [InternalName("leaverBusterPenaltyTime")]
-public int LeaverBusterPenaltyTime { get; set; }
+public Int32 LeaverBusterPenaltyTime { get; set; }
 
 [InternalName("platformId")]
-public string PlatformId { get; set; }
+public String PlatformId { get; set; }
 
 [InternalName("matchMakingEnabled")]
-public bool MatchMakingEnabled { get; set; }
+public Boolean MatchMakingEnabled { get; set; }
 
 [InternalName("minutesUntilShutdownEnabled")]
-public bool MinutesUntilShutdownEnabled { get; set; }
+public Boolean MinutesUntilShutdownEnabled { get; set; }
 
 [InternalName("rpBalance")]
-public double RpBalance { get; set; }
+public Double RpBalance { get; set; }
 
 [InternalName("gameTypeConfigs")]
 public List<GameTypeConfigDTO> GameTypeConfigs { get; set; }
 
 [InternalName("bingeIsPlayerInBingePreventionWindow")]
-public bool BingeIsPlayerInBingePreventionWindow { get; set; }
+public Boolean BingeIsPlayerInBingePreventionWindow { get; set; }
 
 [InternalName("minorShutdownEnforced")]
-public bool MinorShutdownEnforced { get; set; }
+public Boolean MinorShutdownEnforced { get; set; }
 
 [InternalName("competitiveRegion")]
-public string CompetitiveRegion { get; set; }
+public String CompetitiveRegion { get; set; }
 
 [InternalName("customMsecsUntilReset")]
-public double CustomMsecsUntilReset { get; set; }
+public Double CustomMsecsUntilReset { get; set; }
 
 }
 }

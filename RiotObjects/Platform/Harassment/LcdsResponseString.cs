@@ -39,7 +39,7 @@ callback(this);
 }
 
 [InternalName("value")]
-public string Value { get; set; }
+public String Value { get; set; }
 
 }
 }

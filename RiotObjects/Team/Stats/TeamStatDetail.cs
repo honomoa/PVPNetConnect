@@ -40,34 +40,34 @@ callback(this);
 }
 
 [InternalName("maxRating")]
-public int MaxRating { get; set; }
+public Int32 MaxRating { get; set; }
 
 [InternalName("teamIdString")]
-public string TeamIdString { get; set; }
+public String TeamIdString { get; set; }
 
 [InternalName("seedRating")]
-public int SeedRating { get; set; }
+public Int32 SeedRating { get; set; }
 
 [InternalName("losses")]
-public int Losses { get; set; }
+public Int32 Losses { get; set; }
 
 [InternalName("rating")]
-public int Rating { get; set; }
+public Int32 Rating { get; set; }
 
 [InternalName("teamStatTypeString")]
-public string TeamStatTypeString { get; set; }
+public String TeamStatTypeString { get; set; }
 
 [InternalName("averageGamesPlayed")]
-public int AverageGamesPlayed { get; set; }
+public Int32 AverageGamesPlayed { get; set; }
 
 [InternalName("teamId")]
 public TeamId TeamId { get; set; }
 
 [InternalName("wins")]
-public int Wins { get; set; }
+public Int32 Wins { get; set; }
 
 [InternalName("teamStatType")]
-public string TeamStatType { get; set; }
+public String TeamStatType { get; set; }
 
 }
 }

@@ -39,130 +39,130 @@ callback(this);
 }
 
 [InternalName("skinName")]
-public object SkinName { get; set; }
+public String SkinName { get; set; }
 
 [InternalName("ranked")]
-public bool Ranked { get; set; }
+public Boolean Ranked { get; set; }
 
 [InternalName("skinIndex")]
-public int SkinIndex { get; set; }
+public Int32 SkinIndex { get; set; }
 
 [InternalName("fellowPlayers")]
 public List<FellowPlayerInfo> FellowPlayers { get; set; }
 
 [InternalName("gameType")]
-public string GameType { get; set; }
+public String GameType { get; set; }
 
 [InternalName("experienceEarned")]
-public double ExperienceEarned { get; set; }
+public Double ExperienceEarned { get; set; }
 
 [InternalName("rawStatsJson")]
 public object RawStatsJson { get; set; }
 
 [InternalName("eligibleFirstWinOfDay")]
-public bool EligibleFirstWinOfDay { get; set; }
+public Boolean EligibleFirstWinOfDay { get; set; }
 
 [InternalName("difficulty")]
 public object Difficulty { get; set; }
 
 [InternalName("gameMapId")]
-public int GameMapId { get; set; }
+public Int32 GameMapId { get; set; }
 
 [InternalName("leaver")]
-public bool Leaver { get; set; }
+public Boolean Leaver { get; set; }
 
 [InternalName("spell1")]
-public double Spell1 { get; set; }
+public Double Spell1 { get; set; }
 
 [InternalName("gameTypeEnum")]
-public string GameTypeEnum { get; set; }
+public String GameTypeEnum { get; set; }
 
 [InternalName("teamId")]
-public double TeamId { get; set; }
+public Double TeamId { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 [InternalName("statistics")]
 public List<RawStat> Statistics { get; set; }
 
 [InternalName("spell2")]
-public double Spell2 { get; set; }
+public Double Spell2 { get; set; }
 
 [InternalName("afk")]
-public bool Afk { get; set; }
+public Boolean Afk { get; set; }
 
 [InternalName("id")]
-public object Id { get; set; }
+public Double Id { get; set; }
 
 [InternalName("boostXpEarned")]
-public double BoostXpEarned { get; set; }
+public Double BoostXpEarned { get; set; }
 
 [InternalName("level")]
-public double Level { get; set; }
+public Double Level { get; set; }
 
 [InternalName("invalid")]
-public bool Invalid { get; set; }
+public Boolean Invalid { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 [InternalName("createDate")]
 public DateTime CreateDate { get; set; }
 
 [InternalName("userServerPing")]
-public int UserServerPing { get; set; }
+public Int32 UserServerPing { get; set; }
 
 [InternalName("adjustedRating")]
-public int AdjustedRating { get; set; }
+public Int32 AdjustedRating { get; set; }
 
 [InternalName("premadeSize")]
-public int PremadeSize { get; set; }
+public Int32 PremadeSize { get; set; }
 
 [InternalName("boostIpEarned")]
-public double BoostIpEarned { get; set; }
+public Double BoostIpEarned { get; set; }
 
 [InternalName("gameId")]
-public double GameId { get; set; }
+public Double GameId { get; set; }
 
 [InternalName("timeInQueue")]
-public int TimeInQueue { get; set; }
+public Int32 TimeInQueue { get; set; }
 
 [InternalName("ipEarned")]
-public double IpEarned { get; set; }
+public Double IpEarned { get; set; }
 
 [InternalName("eloChange")]
-public int EloChange { get; set; }
+public Int32 EloChange { get; set; }
 
 [InternalName("gameMode")]
-public string GameMode { get; set; }
+public String GameMode { get; set; }
 
 [InternalName("difficultyString")]
 public object DifficultyString { get; set; }
 
 [InternalName("KCoefficient")]
-public double KCoefficient { get; set; }
+public Double KCoefficient { get; set; }
 
 [InternalName("teamRating")]
-public int TeamRating { get; set; }
+public Int32 TeamRating { get; set; }
 
 [InternalName("subType")]
-public string SubType { get; set; }
+public String SubType { get; set; }
 
 [InternalName("queueType")]
-public string QueueType { get; set; }
+public String QueueType { get; set; }
 
 [InternalName("premadeTeam")]
-public bool PremadeTeam { get; set; }
+public Boolean PremadeTeam { get; set; }
 
 [InternalName("predictedWinPct")]
-public double PredictedWinPct { get; set; }
+public Double PredictedWinPct { get; set; }
 
 [InternalName("rating")]
-public double Rating { get; set; }
+public Double Rating { get; set; }
 
 [InternalName("championId")]
-public double ChampionId { get; set; }
+public Double ChampionId { get; set; }
 
 }
 }

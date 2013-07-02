@@ -39,10 +39,10 @@ callback(this);
 }
 
 [InternalName("maxRating")]
-public int MaxRating { get; set; }
+public Int32 MaxRating { get; set; }
 
 [InternalName("playerStatSummaryTypeString")]
-public string PlayerStatSummaryTypeString { get; set; }
+public String PlayerStatSummaryTypeString { get; set; }
 
 [InternalName("aggregatedStats")]
 public SummaryAggStats AggregatedStats { get; set; }
@@ -51,25 +51,25 @@ public SummaryAggStats AggregatedStats { get; set; }
 public DateTime ModifyDate { get; set; }
 
 [InternalName("leaves")]
-public int Leaves { get; set; }
+public Int32 Leaves { get; set; }
 
 [InternalName("playerStatSummaryType")]
-public string PlayerStatSummaryType { get; set; }
+public String PlayerStatSummaryType { get; set; }
 
 [InternalName("userId")]
-public double UserId { get; set; }
+public Double UserId { get; set; }
 
 [InternalName("losses")]
-public int Losses { get; set; }
+public Int32 Losses { get; set; }
 
 [InternalName("rating")]
-public int Rating { get; set; }
+public Int32 Rating { get; set; }
 
 [InternalName("aggregatedStatsJson")]
 public object AggregatedStatsJson { get; set; }
 
 [InternalName("wins")]
-public int Wins { get; set; }
+public Int32 Wins { get; set; }
 
 }
 }

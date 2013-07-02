@@ -39,31 +39,31 @@ callback(this);
 }
 
 [InternalName("id")]
-public int Id { get; set; }
+public Int32 Id { get; set; }
 
 [InternalName("allowTrades")]
-public bool AllowTrades { get; set; }
+public Boolean AllowTrades { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("mainPickTimerDuration")]
-public int MainPickTimerDuration { get; set; }
+public Int32 MainPickTimerDuration { get; set; }
 
 [InternalName("exclusivePick")]
-public bool ExclusivePick { get; set; }
+public Boolean ExclusivePick { get; set; }
 
 [InternalName("pickMode")]
-public string PickMode { get; set; }
+public String PickMode { get; set; }
 
 [InternalName("maxAllowableBans")]
-public int MaxAllowableBans { get; set; }
+public Int32 MaxAllowableBans { get; set; }
 
 [InternalName("banTimerDuration")]
-public int BanTimerDuration { get; set; }
+public Int32 BanTimerDuration { get; set; }
 
 [InternalName("postPickTimerDuration")]
-public int PostPickTimerDuration { get; set; }
+public Int32 PostPickTimerDuration { get; set; }
 
 }
 }

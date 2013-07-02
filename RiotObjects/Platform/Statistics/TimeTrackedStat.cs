@@ -42,7 +42,7 @@ callback(this);
 public DateTime Timestamp { get; set; }
 
 [InternalName("type")]
-public string Type { get; set; }
+public String Type { get; set; }
 
 }
 }

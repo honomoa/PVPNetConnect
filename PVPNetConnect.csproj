@@ -118,6 +118,7 @@
     <Compile Include="RiotObjects\Platform\Systemstate\ClientSystemStatesNotification.cs" />
     <Compile Include="RiotObjects\RiotGamesObject.cs" />
     <Compile Include="RiotObjects\SummonerNames.cs" />
+    <Compile Include="RiotObjects\Team\CreatedTeam.cs" />
     <Compile Include="RiotObjects\Team\Dto\PlayerDTO.cs" />
     <Compile Include="RiotObjects\Team\Dto\RosterDTO.cs" />
     <Compile Include="RiotObjects\Team\Dto\TeamDTO.cs" />

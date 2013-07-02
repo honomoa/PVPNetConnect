@@ -40,16 +40,16 @@ callback(this);
 }
 
 [InternalName("rank")]
-public int Rank { get; set; }
+public Int32 Rank { get; set; }
 
 [InternalName("talentId")]
-public int TalentId { get; set; }
+public Int32 TalentId { get; set; }
 
 [InternalName("talent")]
 public Talent Talent { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

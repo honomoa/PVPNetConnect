@@ -40,10 +40,10 @@ callback(this);
 }
 
 [InternalName("token")]
-public string Token { get; set; }
+public String Token { get; set; }
 
 [InternalName("password")]
-public string Password { get; set; }
+public String Password { get; set; }
 
 [InternalName("accountSummary")]
 public AccountSummary AccountSummary { get; set; }

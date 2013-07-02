@@ -39,22 +39,22 @@ callback(this);
 }
 
 [InternalName("spectatorsAllowed")]
-public string SpectatorsAllowed { get; set; }
+public String SpectatorsAllowed { get; set; }
 
 [InternalName("passwordSet")]
-public bool PasswordSet { get; set; }
+public Boolean PasswordSet { get; set; }
 
 [InternalName("gameType")]
-public string GameType { get; set; }
+public String GameType { get; set; }
 
 [InternalName("gameTypeConfigId")]
-public int GameTypeConfigId { get; set; }
+public Int32 GameTypeConfigId { get; set; }
 
 [InternalName("glmGameId")]
 public object GlmGameId { get; set; }
 
 [InternalName("gameState")]
-public string GameState { get; set; }
+public String GameState { get; set; }
 
 [InternalName("glmHost")]
 public object GlmHost { get; set; }
@@ -63,13 +63,13 @@ public object GlmHost { get; set; }
 public List<object> Observers { get; set; }
 
 [InternalName("statusOfParticipants")]
-public string StatusOfParticipants { get; set; }
+public String StatusOfParticipants { get; set; }
 
 [InternalName("glmSecurePort")]
-public int GlmSecurePort { get; set; }
+public Int32 GlmSecurePort { get; set; }
 
 [InternalName("id")]
-public double Id { get; set; }
+public Double Id { get; set; }
 
 [InternalName("ownerSummary")]
 public object OwnerSummary { get; set; }
@@ -84,61 +84,61 @@ public List<BannedChampion> BannedChampions { get; set; }
 public object RoomName { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("spectatorDelay")]
-public int SpectatorDelay { get; set; }
+public Int32 SpectatorDelay { get; set; }
 
 [InternalName("teamOne")]
 public List<PlayerParticipant> TeamOne { get; set; }
 
 [InternalName("terminatedCondition")]
-public string TerminatedCondition { get; set; }
+public String TerminatedCondition { get; set; }
 
 [InternalName("queueTypeName")]
-public string QueueTypeName { get; set; }
+public String QueueTypeName { get; set; }
 
 [InternalName("glmPort")]
-public int GlmPort { get; set; }
+public Int32 GlmPort { get; set; }
 
 [InternalName("passbackUrl")]
 public object PassbackUrl { get; set; }
 
 [InternalName("roomPassword")]
-public string RoomPassword { get; set; }
+public String RoomPassword { get; set; }
 
 [InternalName("optimisticLock")]
-public double OptimisticLock { get; set; }
+public Double OptimisticLock { get; set; }
 
 [InternalName("maxNumPlayers")]
-public int MaxNumPlayers { get; set; }
+public Int32 MaxNumPlayers { get; set; }
 
 [InternalName("queuePosition")]
-public int QueuePosition { get; set; }
+public Int32 QueuePosition { get; set; }
 
 [InternalName("gameMode")]
-public string GameMode { get; set; }
+public String GameMode { get; set; }
 
 [InternalName("expiryTime")]
-public double ExpiryTime { get; set; }
+public Double ExpiryTime { get; set; }
 
 [InternalName("mapId")]
-public int MapId { get; set; }
+public Int32 MapId { get; set; }
 
 [InternalName("banOrder")]
 public object BanOrder { get; set; }
 
 [InternalName("pickTurn")]
-public int PickTurn { get; set; }
+public Int32 PickTurn { get; set; }
 
 [InternalName("gameStateString")]
-public string GameStateString { get; set; }
+public String GameStateString { get; set; }
 
 [InternalName("playerChampionSelections")]
 public List<PlayerChampionSelectionDTO> PlayerChampionSelections { get; set; }
 
 [InternalName("joinTimerDuration")]
-public int JoinTimerDuration { get; set; }
+public Int32 JoinTimerDuration { get; set; }
 
 [InternalName("passbackDataPacket")]
 public object PassbackDataPacket { get; set; }

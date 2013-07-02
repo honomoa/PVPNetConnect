@@ -39,7 +39,7 @@ callback(this);
 }
 
 [InternalName("ownerId")]
-public double OwnerId { get; set; }
+public Double OwnerId { get; set; }
 
 [InternalName("memberList")]
 public List<TeamMemberInfoDTO> MemberList { get; set; }

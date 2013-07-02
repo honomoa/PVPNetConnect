@@ -39,16 +39,16 @@ callback(this);
 }
 
 [InternalName("infPoints")]
-public double InfPoints { get; set; }
+public Double InfPoints { get; set; }
 
 [InternalName("expPoints")]
-public double ExpPoints { get; set; }
+public Double ExpPoints { get; set; }
 
 [InternalName("summonerLevel")]
-public double SummonerLevel { get; set; }
+public Double SummonerLevel { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

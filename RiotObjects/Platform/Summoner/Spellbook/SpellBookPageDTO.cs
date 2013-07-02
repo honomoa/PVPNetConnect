@@ -39,13 +39,13 @@ callback(this);
 }
 
 [InternalName("pageId")]
-public double PageId { get; set; }
+public Double PageId { get; set; }
 
 [InternalName("name")]
-public string Name { get; set; }
+public String Name { get; set; }
 
 [InternalName("current")]
-public bool Current { get; set; }
+public Boolean Current { get; set; }
 
 [InternalName("slotEntries")]
 public List<SlotEntry> SlotEntries { get; set; }
@@ -54,7 +54,7 @@ public List<SlotEntry> SlotEntries { get; set; }
 public DateTime CreateDate { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }

@@ -42,13 +42,13 @@ callback(this);
 public object SummonerRunesJson { get; set; }
 
 [InternalName("dateString")]
-public string DateString { get; set; }
+public String DateString { get; set; }
 
 [InternalName("summonerRunes")]
 public List<SummonerRune> SummonerRunes { get; set; }
 
 [InternalName("summonerId")]
-public double SummonerId { get; set; }
+public Double SummonerId { get; set; }
 
 }
 }
