@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.SummaryAggStats";
 
+public SummaryAggStats()
+{
+}
+
 public SummaryAggStats(Callback callback)
 {
 this.callback = callback;
@@ -42,7 +46,7 @@ callback(this);
 public object StatsJson { get; set; }
 
 [InternalName("stats")]
-public List<SummaryAggStat> Stats { get; set; }
+public List<object> Stats { get; set; }
 
 }
 }

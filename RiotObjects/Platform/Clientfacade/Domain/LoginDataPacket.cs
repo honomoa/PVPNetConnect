@@ -24,6 +24,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.clientfacade.domain.LoginDataPacket";
 
+public LoginDataPacket()
+{
+}
+
 public LoginDataPacket(Callback callback)
 {
 this.callback = callback;

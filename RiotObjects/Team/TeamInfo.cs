@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.team.TeamInfo";
 
+public TeamInfo()
+{
+}
+
 public TeamInfo(Callback callback)
 {
 this.callback = callback;

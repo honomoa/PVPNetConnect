@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.game.PlayerChampionSelectionDTO";
 
+public PlayerChampionSelectionDTO()
+{
+}
+
 public PlayerChampionSelectionDTO(Callback callback)
 {
 this.callback = callback;

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.team.dto.RosterDTO";
 
+public RosterDTO()
+{
+}
+
 public RosterDTO(Callback callback)
 {
 this.callback = callback;

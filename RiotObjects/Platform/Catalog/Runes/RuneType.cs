@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.catalog.runes.RuneType";
 
+public RuneType()
+{
+}
+
 public RuneType(Callback callback)
 {
 this.callback = callback;

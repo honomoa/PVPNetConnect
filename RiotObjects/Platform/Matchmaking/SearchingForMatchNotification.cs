@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.matchmaking.SearchingForMatchNotification";
 
+public SearchingForMatchNotification()
+{
+}
+
 public SearchingForMatchNotification(Callback callback)
 {
 this.callback = callback;

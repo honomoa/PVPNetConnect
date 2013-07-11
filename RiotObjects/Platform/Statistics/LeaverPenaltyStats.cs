@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.LeaverPenaltyStats";
 
+public LeaverPenaltyStats()
+{
+}
+
 public LeaverPenaltyStats(Callback callback)
 {
 this.callback = callback;

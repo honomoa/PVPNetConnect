@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.broadcast.BroadcastNotification";
 
+public BroadcastNotification()
+{
+}
+
 public BroadcastNotification(Callback callback)
 {
 this.callback = callback;

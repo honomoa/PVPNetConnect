@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.spellbook.SlotEntry";
 
+public SlotEntry()
+{
+}
+
 public SlotEntry(Callback callback)
 {
 this.callback = callback;
@@ -43,12 +47,6 @@ public Int32 RuneId { get; set; }
 
 [InternalName("runeSlotId")]
 public Int32 RuneSlotId { get; set; }
-
-[InternalName("runeSlot")]
-public object RuneSlot { get; set; }
-
-[InternalName("rune")]
-public object Rune { get; set; }
 
 }
 }

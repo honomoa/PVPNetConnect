@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.team.CreatedTeam";
 
+public CreatedTeam()
+{
+}
+
 public CreatedTeam(Callback callback)
 {
 this.callback = callback;

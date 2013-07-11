@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.Summoner";
 
+public Summoner()
+{
+}
+
 public Summoner(Callback callback)
 {
 this.callback = callback;

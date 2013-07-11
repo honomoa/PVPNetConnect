@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.TimeTrackedStat";
 
+public TimeTrackedStat()
+{
+}
+
 public TimeTrackedStat(Callback callback)
 {
 this.callback = callback;

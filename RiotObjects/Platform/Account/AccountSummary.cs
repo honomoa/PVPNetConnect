@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.account.AccountSummary";
 
+public AccountSummary()
+{
+}
+
 public AccountSummary(Callback callback)
 {
 this.callback = callback;

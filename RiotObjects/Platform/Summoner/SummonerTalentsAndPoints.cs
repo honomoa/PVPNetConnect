@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.SummonerTalentsAndPoints";
 
+public SummonerTalentsAndPoints()
+{
+}
+
 public SummonerTalentsAndPoints(Callback callback)
 {
 this.callback = callback;

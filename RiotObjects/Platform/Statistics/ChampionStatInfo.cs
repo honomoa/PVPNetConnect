@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.ChampionStatInfo";
 
+public ChampionStatInfo()
+{
+}
+
 public ChampionStatInfo(Callback callback)
 {
 this.callback = callback;
@@ -39,16 +43,16 @@ callback(this);
 }
 
 [InternalName("totalGamesPlayed")]
-public int TotalGamesPlayed { get; set; }
+public Int32 TotalGamesPlayed { get; set; }
 
 [InternalName("accountId")]
-public double AccountId { get; set; }
+public Double AccountId { get; set; }
 
 [InternalName("stats")]
 public List<AggregatedStat> Stats { get; set; }
 
 [InternalName("championId")]
-public double ChampionId { get; set; }
+public Double ChampionId { get; set; }
 
 }
 }

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.team.dto.TeamMemberInfoDTO";
 
+public TeamMemberInfoDTO()
+{
+}
+
 public TeamMemberInfoDTO(Callback callback)
 {
 this.callback = callback;
@@ -42,7 +46,7 @@ callback(this);
 public DateTime JoinDate { get; set; }
 
 [InternalName("playerName")]
-public object PlayerName { get; set; }
+public String PlayerName { get; set; }
 
 [InternalName("inviteDate")]
 public DateTime InviteDate { get; set; }

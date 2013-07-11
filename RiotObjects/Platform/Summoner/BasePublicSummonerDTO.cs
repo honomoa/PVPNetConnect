@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.BasePublicSummonerDTO";
 
+public BasePublicSummonerDTO()
+{
+}
+
 public BasePublicSummonerDTO(Callback callback)
 {
 this.callback = callback;

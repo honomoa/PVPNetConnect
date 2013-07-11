@@ -6,7 +6,7 @@ using System.Text;
 namespace PVPNetConnect.RiotObjects.Platform.Game
 {
 
-public class PlayerParticipant : RiotGamesObject
+public class PlayerParticipant : Participant
 {
 public override string TypeName
 {
@@ -17,6 +17,10 @@ return this.type;
 }
 
 private string type = "com.riotgames.platform.game.PlayerParticipant";
+
+public PlayerParticipant()
+{
+}
 
 public PlayerParticipant(Callback callback)
 {
@@ -39,7 +43,7 @@ callback(this);
 }
 
 [InternalName("timeAddedToQueue")]
-public Double TimeAddedToQueue { get; set; }
+public object TimeAddedToQueue { get; set; }
 
 [InternalName("index")]
 public Int32 Index { get; set; }
@@ -99,7 +103,7 @@ public Int32 PickMode { get; set; }
 public String OriginalPlatformId { get; set; }
 
 [InternalName("teamParticipantId")]
-public Double TeamParticipantId { get; set; }
+public object TeamParticipantId { get; set; }
 
 }
 }

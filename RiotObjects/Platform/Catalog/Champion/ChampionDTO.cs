@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PVPNetConnect.RiotObjects;
 
 namespace PVPNetConnect.RiotObjects.Platform.Catalog.Champion
 {
@@ -17,6 +18,10 @@ return this.type;
 }
 
 private string type = "com.riotgames.platform.catalog.champion.ChampionDTO";
+
+public ChampionDTO()
+{
+}
 
 public ChampionDTO(Callback callback)
 {
@@ -38,41 +43,59 @@ base.SetFields(this, result);
 callback(this);
 }
 
-[InternalName("purchased")]
-public double Purchased { get; set; }
+[InternalName("searchTags")]
+public String[] SearchTags { get; set; }
+
+[InternalName("ownedByYourTeam")]
+public Boolean OwnedByYourTeam { get; set; }
+
+[InternalName("botEnabled")]
+public Boolean BotEnabled { get; set; }
+
+[InternalName("banned")]
+public Boolean Banned { get; set; }
+
+[InternalName("skinName")]
+public String SkinName { get; set; }
+
+[InternalName("displayName")]
+public String DisplayName { get; set; }
+
+[InternalName("championData")]
+public TypedObject ChampionData { get; set; }
+
+[InternalName("owned")]
+public Boolean Owned { get; set; }
+
+[InternalName("championId")]
+public Int32 ChampionId { get; set; }
+
+[InternalName("freeToPlayReward")]
+public Boolean FreeToPlayReward { get; set; }
+
+[InternalName("freeToPlay")]
+public Boolean FreeToPlay { get; set; }
+
+[InternalName("ownedByEnemyTeam")]
+public Boolean OwnedByEnemyTeam { get; set; }
+
+[InternalName("active")]
+public Boolean Active { get; set; }
 
 [InternalName("championSkins")]
 public List<ChampionSkinDTO> ChampionSkins { get; set; }
 
-[InternalName("rankedPlayEnabled")]
-public bool RankedPlayEnabled { get; set; }
-
-[InternalName("purchaseDate")]
-public double PurchaseDate { get; set; }
+[InternalName("description")]
+public String Description { get; set; }
 
 [InternalName("winCountRemaining")]
-public int WinCountRemaining { get; set; }
+public Int32 WinCountRemaining { get; set; }
 
-[InternalName("botEnabled")]
-public bool BotEnabled { get; set; }
-
-[InternalName("active")]
-public bool Active { get; set; }
+[InternalName("purchaseDate")]
+public Double PurchaseDate { get; set; }
 
 [InternalName("endDate")]
-public double EndDate { get; set; }
-
-[InternalName("freeToPlay")]
-public bool FreeToPlay { get; set; }
-
-[InternalName("championId")]
-public int ChampionId { get; set; }
-
-[InternalName("freeToPlayReward")]
-public bool FreeToPlayReward { get; set; }
-
-[InternalName("owned")]
-public bool Owned { get; set; }
+public Int32 EndDate { get; set; }
 
 }
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Team;
 
 namespace PVPNetConnect.RiotObjects.Team.Dto
 {
@@ -18,6 +17,10 @@ return this.type;
 }
 
 private string type = "com.riotgames.team.dto.PlayerDTO";
+
+public PlayerDTO()
+{
+}
 
 public PlayerDTO(Callback callback)
 {
@@ -43,13 +46,13 @@ callback(this);
 public Double PlayerId { get; set; }
 
 [InternalName("teamsSummary")]
-public List<TeamDTO> TeamsSummary { get; set; }
+public List<object> TeamsSummary { get; set; }
 
 [InternalName("createdTeams")]
-public List<CreatedTeam> CreatedTeams { get; set; }
+public List<object> CreatedTeams { get; set; }
 
 [InternalName("playerTeams")]
-public List<TeamInfo> PlayerTeams { get; set; }
+public List<object> PlayerTeams { get; set; }
 
 }
 }

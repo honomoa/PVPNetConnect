@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.reroll.pojo.PointSummary";
 
+public PointSummary()
+{
+}
+
 public PointSummary(Callback callback)
 {
 this.callback = callback;

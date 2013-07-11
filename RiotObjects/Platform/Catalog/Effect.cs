@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.catalog.Effect";
 
+public Effect()
+{
+}
+
 public Effect(Callback callback)
 {
 this.callback = callback;

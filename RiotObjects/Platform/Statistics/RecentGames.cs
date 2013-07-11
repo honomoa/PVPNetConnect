@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.RecentGames";
 
+public RecentGames()
+{
+}
+
 public RecentGames(Callback callback)
 {
 this.callback = callback;

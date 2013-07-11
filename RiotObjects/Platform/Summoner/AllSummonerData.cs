@@ -20,6 +20,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.AllSummonerData";
 
+public AllSummonerData()
+{
+}
+
 public AllSummonerData(Callback callback)
 {
 this.callback = callback;

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.spellbook.SpellBookDTO";
 
+public SpellBookDTO()
+{
+}
+
 public SpellBookDTO(Callback callback)
 {
 this.callback = callback;

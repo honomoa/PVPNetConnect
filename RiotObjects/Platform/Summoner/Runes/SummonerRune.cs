@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.runes.SummonerRune";
 
+public SummonerRune()
+{
+}
+
 public SummonerRune(Callback callback)
 {
 this.callback = callback;

@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.team.stats.TeamStatSummary";
 
+public TeamStatSummary()
+{
+}
+
 public TeamStatSummary(Callback callback)
 {
 this.callback = callback;

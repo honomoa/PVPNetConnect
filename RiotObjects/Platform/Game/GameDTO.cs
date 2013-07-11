@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.game.GameDTO";
 
+public GameDTO()
+{
+}
+
 public GameDTO(Callback callback)
 {
 this.callback = callback;
@@ -60,10 +64,10 @@ public String GameState { get; set; }
 public object GlmHost { get; set; }
 
 [InternalName("observers")]
-public List<object> Observers { get; set; }
+public List<GameObserver> Observers { get; set; }
 
 [InternalName("statusOfParticipants")]
-public String StatusOfParticipants { get; set; }
+public object StatusOfParticipants { get; set; }
 
 [InternalName("glmSecurePort")]
 public Int32 GlmSecurePort { get; set; }
@@ -72,16 +76,16 @@ public Int32 GlmSecurePort { get; set; }
 public Double Id { get; set; }
 
 [InternalName("ownerSummary")]
-public object OwnerSummary { get; set; }
+public PlayerParticipant OwnerSummary { get; set; }
 
 [InternalName("teamTwo")]
-public List<PlayerParticipant> TeamTwo { get; set; }
+public List<Participant> TeamTwo { get; set; }
 
 [InternalName("bannedChampions")]
 public List<BannedChampion> BannedChampions { get; set; }
 
 [InternalName("roomName")]
-public object RoomName { get; set; }
+public String RoomName { get; set; }
 
 [InternalName("name")]
 public String Name { get; set; }
@@ -90,7 +94,7 @@ public String Name { get; set; }
 public Int32 SpectatorDelay { get; set; }
 
 [InternalName("teamOne")]
-public List<PlayerParticipant> TeamOne { get; set; }
+public List<Participant> TeamOne { get; set; }
 
 [InternalName("terminatedCondition")]
 public String TerminatedCondition { get; set; }
@@ -126,7 +130,7 @@ public Double ExpiryTime { get; set; }
 public Int32 MapId { get; set; }
 
 [InternalName("banOrder")]
-public object BanOrder { get; set; }
+public List<Int32> BanOrder { get; set; }
 
 [InternalName("pickTurn")]
 public Int32 PickTurn { get; set; }

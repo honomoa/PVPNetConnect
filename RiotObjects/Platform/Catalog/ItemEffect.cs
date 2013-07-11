@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.catalog.ItemEffect";
 
+public ItemEffect()
+{
+}
+
 public ItemEffect(Callback callback)
 {
 this.callback = callback;

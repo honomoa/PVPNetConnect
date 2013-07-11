@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.kudos.dto.PendingKudosDTO";
 
+public PendingKudosDTO()
+{
+}
+
 public PendingKudosDTO(Callback callback)
 {
 this.callback = callback;

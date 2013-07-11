@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.leagues.pojo.LeagueItemDTO";
 
+public LeagueItemDTO()
+{
+}
+
 public LeagueItemDTO(Callback callback)
 {
 this.callback = callback;

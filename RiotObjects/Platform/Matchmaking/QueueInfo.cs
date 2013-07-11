@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.matchmaking.QueueInfo";
 
+public QueueInfo()
+{
+}
+
 public QueueInfo(Callback callback)
 {
 this.callback = callback;

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.systemstate.ClientSystemStatesNotification";
 
+public ClientSystemStatesNotification()
+{
+}
+
 public ClientSystemStatesNotification(Callback callback)
 {
 this.callback = callback;

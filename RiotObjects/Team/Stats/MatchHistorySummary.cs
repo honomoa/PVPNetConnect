@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.team.stats.MatchHistorySummary";
 
+public MatchHistorySummary()
+{
+}
+
 public MatchHistorySummary(Callback callback)
 {
 this.callback = callback;

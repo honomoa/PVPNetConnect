@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.login.Session";
 
+public Session()
+{
+}
+
 public Session(Callback callback)
 {
 this.callback = callback;

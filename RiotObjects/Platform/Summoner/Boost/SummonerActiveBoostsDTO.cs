@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.boost.SummonerActiveBoostsDTO";
 
+public SummonerActiveBoostsDTO()
+{
+}
+
 public SummonerActiveBoostsDTO(Callback callback)
 {
 this.callback = callback;

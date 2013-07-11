@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.AggregatedStats";
 
+public AggregatedStats()
+{
+}
+
 public AggregatedStats(Callback callback)
 {
 this.callback = callback;
@@ -42,13 +46,13 @@ callback(this);
 public List<AggregatedStat> LifetimeStatistics { get; set; }
 
 [InternalName("modifyDate")]
-public DateTime ModifyDate { get; set; }
+public object ModifyDate { get; set; }
 
 [InternalName("key")]
 public AggregatedStatsKey Key { get; set; }
 
 [InternalName("aggregatedStatsJson")]
-public object AggregatedStatsJson { get; set; }
+public String AggregatedStatsJson { get; set; }
 
 }
 }

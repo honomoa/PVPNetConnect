@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.RuneSlot";
 
+public RuneSlot()
+{
+}
+
 public RuneSlot(Callback callback)
 {
 this.callback = callback;

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.PlayerStats";
 
+public PlayerStats()
+{
+}
+
 public PlayerStats(Callback callback)
 {
 this.callback = callback;

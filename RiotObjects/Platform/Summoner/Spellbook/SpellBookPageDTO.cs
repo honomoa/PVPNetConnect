@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.spellbook.SpellBookPageDTO";
 
+public SpellBookPageDTO()
+{
+}
+
 public SpellBookPageDTO(Callback callback)
 {
 this.callback = callback;
@@ -38,23 +42,23 @@ base.SetFields(this, result);
 callback(this);
 }
 
-[InternalName("pageId")]
-public Double PageId { get; set; }
-
-[InternalName("name")]
-public String Name { get; set; }
-
-[InternalName("current")]
-public Boolean Current { get; set; }
-
 [InternalName("slotEntries")]
 public List<SlotEntry> SlotEntries { get; set; }
+
+[InternalName("summonerId")]
+public Int32 SummonerId { get; set; }
 
 [InternalName("createDate")]
 public DateTime CreateDate { get; set; }
 
-[InternalName("summonerId")]
-public Double SummonerId { get; set; }
+[InternalName("name")]
+public String Name { get; set; }
+
+[InternalName("pageId")]
+public Int32 PageId { get; set; }
+
+[InternalName("current")]
+public Boolean Current { get; set; }
 
 }
 }

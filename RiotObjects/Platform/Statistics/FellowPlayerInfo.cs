@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.FellowPlayerInfo";
 
+public FellowPlayerInfo()
+{
+}
+
 public FellowPlayerInfo(Callback callback)
 {
 this.callback = callback;

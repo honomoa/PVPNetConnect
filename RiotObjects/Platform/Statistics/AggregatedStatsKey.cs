@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.AggregatedStatsKey";
 
+public AggregatedStatsKey()
+{
+}
+
 public AggregatedStatsKey(Callback callback)
 {
 this.callback = callback;

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.game.PlatformGameLifecycleDTO";
 
+public PlatformGameLifecycleDTO()
+{
+}
+
 public PlatformGameLifecycleDTO(Callback callback)
 {
 this.callback = callback;

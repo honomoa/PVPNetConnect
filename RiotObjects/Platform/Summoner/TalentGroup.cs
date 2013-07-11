@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.TalentGroup";
 
+public TalentGroup()
+{
+}
+
 public TalentGroup(Callback callback)
 {
 this.callback = callback;

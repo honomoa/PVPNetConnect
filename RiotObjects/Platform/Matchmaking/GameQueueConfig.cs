@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.matchmaking.GameQueueConfig";
 
+public GameQueueConfig()
+{
+}
+
 public GameQueueConfig(Callback callback)
 {
 this.callback = callback;
@@ -39,76 +43,76 @@ callback(this);
 }
 
 [InternalName("blockedMinutesThreshold")]
-public int BlockedMinutesThreshold { get; set; }
+public Int32 BlockedMinutesThreshold { get; set; }
 
 [InternalName("minimumParticipantListSize")]
-public int MinimumParticipantListSize { get; set; }
+public Int32 MinimumParticipantListSize { get; set; }
 
 [InternalName("ranked")]
-public bool Ranked { get; set; }
+public Boolean Ranked { get; set; }
 
 [InternalName("maxLevel")]
-public int MaxLevel { get; set; }
+public Int32 MaxLevel { get; set; }
 
 [InternalName("minLevel")]
-public int MinLevel { get; set; }
+public Int32 MinLevel { get; set; }
 
 [InternalName("gameTypeConfigId")]
-public int GameTypeConfigId { get; set; }
+public Int32 GameTypeConfigId { get; set; }
 
 [InternalName("thresholdEnabled")]
-public bool ThresholdEnabled { get; set; }
+public Boolean ThresholdEnabled { get; set; }
 
 [InternalName("queueState")]
-public string QueueState { get; set; }
+public String QueueState { get; set; }
 
 [InternalName("type")]
-public string Type { get; set; }
+public String Type { get; set; }
 
 [InternalName("cacheName")]
-public string CacheName { get; set; }
+public String CacheName { get; set; }
 
 [InternalName("id")]
-public double Id { get; set; }
+public Double Id { get; set; }
 
 [InternalName("queueBonusKey")]
-public string QueueBonusKey { get; set; }
+public String QueueBonusKey { get; set; }
 
 [InternalName("queueStateString")]
-public string QueueStateString { get; set; }
+public String QueueStateString { get; set; }
 
 [InternalName("pointsConfigKey")]
-public string PointsConfigKey { get; set; }
+public String PointsConfigKey { get; set; }
 
 [InternalName("teamOnly")]
-public bool TeamOnly { get; set; }
+public Boolean TeamOnly { get; set; }
 
 [InternalName("minimumQueueDodgeDelayTime")]
-public int MinimumQueueDodgeDelayTime { get; set; }
+public Int32 MinimumQueueDodgeDelayTime { get; set; }
 
 [InternalName("supportedMapIds")]
 public List<Int32> SupportedMapIds { get; set; }
 
 [InternalName("gameMode")]
-public string GameMode { get; set; }
+public String GameMode { get; set; }
 
 [InternalName("typeString")]
-public string TypeString { get; set; }
+public String TypeString { get; set; }
 
 [InternalName("numPlayersPerTeam")]
-public int NumPlayersPerTeam { get; set; }
+public Int32 NumPlayersPerTeam { get; set; }
 
 [InternalName("maximumParticipantListSize")]
-public int MaximumParticipantListSize { get; set; }
+public Int32 MaximumParticipantListSize { get; set; }
 
 [InternalName("disallowFreeChampions")]
-public bool DisallowFreeChampions { get; set; }
+public Boolean DisallowFreeChampions { get; set; }
 
 [InternalName("mapSelectionAlgorithm")]
-public string MapSelectionAlgorithm { get; set; }
+public String MapSelectionAlgorithm { get; set; }
 
 [InternalName("thresholdSize")]
-public double ThresholdSize { get; set; }
+public Double ThresholdSize { get; set; }
 
 [InternalName("matchingThrottleConfig")]
 public MatchingThrottleConfig MatchingThrottleConfig { get; set; }

@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.masterybook.MasteryBookPageDTO";
 
+public MasteryBookPageDTO()
+{
+}
+
 public MasteryBookPageDTO(Callback callback)
 {
 this.callback = callback;

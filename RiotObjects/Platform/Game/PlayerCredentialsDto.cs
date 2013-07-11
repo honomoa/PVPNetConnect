@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.game.PlayerCredentialsDto";
 
+public PlayerCredentialsDto()
+{
+}
+
 public PlayerCredentialsDto(Callback callback)
 {
 this.callback = callback;
@@ -39,7 +43,7 @@ callback(this);
 }
 
 [InternalName("encryptionKey")]
-public object EncryptionKey { get; set; }
+public String EncryptionKey { get; set; }
 
 [InternalName("gameId")]
 public Double GameId { get; set; }
@@ -48,7 +52,7 @@ public Double GameId { get; set; }
 public Int32 LastSelectedSkinIndex { get; set; }
 
 [InternalName("serverIp")]
-public object ServerIp { get; set; }
+public String ServerIp { get; set; }
 
 [InternalName("observer")]
 public Boolean Observer { get; set; }
@@ -60,7 +64,7 @@ public Double SummonerId { get; set; }
 public String ObserverServerIp { get; set; }
 
 [InternalName("handshakeToken")]
-public object HandshakeToken { get; set; }
+public String HandshakeToken { get; set; }
 
 [InternalName("playerId")]
 public Double PlayerId { get; set; }
@@ -72,7 +76,7 @@ public Int32 ServerPort { get; set; }
 public Int32 ObserverServerPort { get; set; }
 
 [InternalName("summonerName")]
-public object SummonerName { get; set; }
+public String SummonerName { get; set; }
 
 [InternalName("observerEncryptionKey")]
 public String ObserverEncryptionKey { get; set; }

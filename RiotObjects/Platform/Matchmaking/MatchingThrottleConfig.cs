@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.matchmaking.MatchingThrottleConfig";
 
+public MatchingThrottleConfig()
+{
+}
+
 public MatchingThrottleConfig(Callback callback)
 {
 this.callback = callback;
@@ -39,13 +43,13 @@ callback(this);
 }
 
 [InternalName("limit")]
-public double Limit { get; set; }
+public Double Limit { get; set; }
 
 [InternalName("matchingThrottleProperties")]
 public List<object> MatchingThrottleProperties { get; set; }
 
 [InternalName("cacheName")]
-public string CacheName { get; set; }
+public String CacheName { get; set; }
 
 }
 }

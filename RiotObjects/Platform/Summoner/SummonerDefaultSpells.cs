@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.SummonerDefaultSpells";
 
+public SummonerDefaultSpells()
+{
+}
+
 public SummonerDefaultSpells(Callback callback)
 {
 this.callback = callback;

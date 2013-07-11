@@ -20,6 +20,10 @@ return this.type;
 
 private string type = "com.riotgames.team.dto.TeamDTO";
 
+public TeamDTO()
+{
+}
+
 public TeamDTO(Callback callback)
 {
 this.callback = callback;
@@ -53,7 +57,7 @@ public String Tag { get; set; }
 public RosterDTO Roster { get; set; }
 
 [InternalName("lastGameDate")]
-public DateTime LastGameDate { get; set; }
+public object LastGameDate { get; set; }
 
 [InternalName("modifyDate")]
 public DateTime ModifyDate { get; set; }
@@ -74,7 +78,7 @@ public DateTime SecondLastJoinDate { get; set; }
 public Double SecondsUntilEligibleForDeletion { get; set; }
 
 [InternalName("matchHistory")]
-public List<MatchHistorySummary> MatchHistory { get; set; }
+public List<object> MatchHistory { get; set; }
 
 [InternalName("name")]
 public String Name { get; set; }

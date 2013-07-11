@@ -50,6 +50,7 @@
     <Compile Include="RiotObjects\Kudos\Dto\PendingKudosDTO.cs" />
     <Compile Include="RiotObjects\Leagues\Pojo\LeagueItemDTO.cs" />
     <Compile Include="RiotObjects\Leagues\Pojo\LeagueListDTO.cs" />
+    <Compile Include="RiotObjects\Leagues\Pojo\MiniSeriesDTO.cs" />
     <Compile Include="RiotObjects\Platform\Account\AccountSummary.cs" />
     <Compile Include="RiotObjects\Platform\Broadcast\BroadcastNotification.cs" />
     <Compile Include="RiotObjects\Platform\Catalog\Champion\ChampionDTO.cs" />
@@ -60,37 +61,54 @@
     <Compile Include="RiotObjects\Platform\Catalog\Runes\RuneType.cs" />
     <Compile Include="RiotObjects\Platform\Clientfacade\Domain\LoginDataPacket.cs" />
     <Compile Include="RiotObjects\Platform\Game\BannedChampion.cs" />
+    <Compile Include="RiotObjects\Platform\Game\BotParticipant.cs" />
     <Compile Include="RiotObjects\Platform\Game\GameDTO.cs" />
+    <Compile Include="RiotObjects\Platform\Game\GameObserver.cs" />
     <Compile Include="RiotObjects\Platform\Game\GameTypeConfigDTO.cs" />
+    <Compile Include="RiotObjects\Platform\Game\Map\GameMap.cs" />
+    <Compile Include="RiotObjects\Platform\Game\ObfruscatedParticipant.cs" />
+    <Compile Include="RiotObjects\Platform\Game\Participant.cs" />
     <Compile Include="RiotObjects\Platform\Game\PlatformGameLifecycleDTO.cs" />
     <Compile Include="RiotObjects\Platform\Game\PlayerChampionSelectionDTO.cs" />
     <Compile Include="RiotObjects\Platform\Game\PlayerCredentialsDto.cs" />
     <Compile Include="RiotObjects\Platform\Game\PlayerParticipant.cs" />
+    <Compile Include="RiotObjects\Platform\Game\PracticeGameConfig.cs" />
+    <Compile Include="RiotObjects\Platform\Game\Practice\PracticeGameSearchResult.cs" />
     <Compile Include="RiotObjects\Platform\Game\StartChampSelectDTO.cs" />
     <Compile Include="RiotObjects\Platform\Harassment\LcdsResponseString.cs" />
     <Compile Include="RiotObjects\Platform\Leagues\Client\Dto\SummonerLeagueItemsDTO.cs" />
     <Compile Include="RiotObjects\Platform\Leagues\Client\Dto\SummonerLeaguesDTO.cs" />
+    <Compile Include="RiotObjects\Platform\Login\AuthenticationCredentials.cs" />
     <Compile Include="RiotObjects\Platform\Login\Session.cs" />
     <Compile Include="RiotObjects\Platform\Matchmaking\GameQueueConfig.cs" />
     <Compile Include="RiotObjects\Platform\Matchmaking\MatchingThrottleConfig.cs" />
+    <Compile Include="RiotObjects\Platform\Matchmaking\MatchMakerParams.cs" />
     <Compile Include="RiotObjects\Platform\Matchmaking\QueueInfo.cs" />
     <Compile Include="RiotObjects\Platform\Matchmaking\SearchingForMatchNotification.cs" />
+    <Compile Include="RiotObjects\Platform\Messaging\StoreAccountBalanceNotification.cs" />
+    <Compile Include="RiotObjects\Platform\Reroll\Pojo\AramPlayerParticipant.cs" />
+    <Compile Include="RiotObjects\Platform\Reroll\Pojo\EogPointChangeBreakdown.cs" />
     <Compile Include="RiotObjects\Platform\Reroll\Pojo\PointSummary.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\AggregatedStat.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\AggregatedStats.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\AggregatedStatsKey.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\ChampionStatInfo.cs" />
+    <Compile Include="RiotObjects\Platform\Statistics\EndOfGameStats.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\FellowPlayerInfo.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\LeaverPenaltyStats.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\PlayerGameStats.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\PlayerLifetimeStats.cs" />
+    <Compile Include="RiotObjects\Platform\Statistics\PlayerParticipantStatsSummary.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\PlayerStats.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\PlayerStatSummaries.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\PlayerStatSummary.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\RawStat.cs" />
+    <Compile Include="RiotObjects\Platform\Statistics\RawStatDTO.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\RecentGames.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\SummaryAggStat.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\SummaryAggStats.cs" />
+    <Compile Include="RiotObjects\Platform\Statistics\Team\TeamAggregatedStatsDTO.cs" />
+    <Compile Include="RiotObjects\Platform\Statistics\Team\TeamPlayerAggregatedStatsDTO.cs" />
     <Compile Include="RiotObjects\Platform\Statistics\TimeTrackedStat.cs" />
     <Compile Include="RiotObjects\Platform\Summoner\AllPublicSummonerDataDTO.cs" />
     <Compile Include="RiotObjects\Platform\Summoner\AllSummonerData.cs" />
@@ -117,7 +135,6 @@
     <Compile Include="RiotObjects\Platform\Summoner\TalentRow.cs" />
     <Compile Include="RiotObjects\Platform\Systemstate\ClientSystemStatesNotification.cs" />
     <Compile Include="RiotObjects\RiotGamesObject.cs" />
-    <Compile Include="RiotObjects\SummonerNames.cs" />
     <Compile Include="RiotObjects\Team\CreatedTeam.cs" />
     <Compile Include="RiotObjects\Team\Dto\PlayerDTO.cs" />
     <Compile Include="RiotObjects\Team\Dto\RosterDTO.cs" />
@@ -128,11 +145,11 @@
     <Compile Include="RiotObjects\Team\Stats\TeamStatSummary.cs" />
     <Compile Include="RiotObjects\Team\TeamId.cs" />
     <Compile Include="RiotObjects\Team\TeamInfo.cs" />
-    <Compile Include="RiotObjects\UnclassedObject.cs" />
     <Compile Include="RTMPSDecoder.cs" />
     <Compile Include="RTMPSEncoder.cs" />
     <Compile Include="TypedObject.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

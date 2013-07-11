@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.harassment.LcdsResponseString";
 
+public LcdsResponseString()
+{
+}
+
 public LcdsResponseString(Callback callback)
 {
 this.callback = callback;

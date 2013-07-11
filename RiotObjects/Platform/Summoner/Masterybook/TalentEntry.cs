@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.masterybook.TalentEntry";
 
+public TalentEntry()
+{
+}
+
 public TalentEntry(Callback callback)
 {
 this.callback = callback;

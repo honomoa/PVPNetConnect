@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.summoner.TalentRow";
 
+public TalentRow()
+{
+}
+
 public TalentRow(Callback callback)
 {
 this.callback = callback;

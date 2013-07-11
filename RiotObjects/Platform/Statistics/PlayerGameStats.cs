@@ -18,6 +18,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.statistics.PlayerGameStats";
 
+public PlayerGameStats()
+{
+}
+
 public PlayerGameStats(Callback callback)
 {
 this.callback = callback;
@@ -39,7 +43,7 @@ callback(this);
 }
 
 [InternalName("skinName")]
-public String SkinName { get; set; }
+public object SkinName { get; set; }
 
 [InternalName("ranked")]
 public Boolean Ranked { get; set; }
@@ -93,7 +97,7 @@ public Double Spell2 { get; set; }
 public Boolean Afk { get; set; }
 
 [InternalName("id")]
-public Double Id { get; set; }
+public object Id { get; set; }
 
 [InternalName("boostXpEarned")]
 public Double BoostXpEarned { get; set; }

@@ -19,6 +19,10 @@ return this.type;
 
 private string type = "com.riotgames.platform.leagues.client.dto.SummonerLeaguesDTO";
 
+public SummonerLeaguesDTO()
+{
+}
+
 public SummonerLeaguesDTO(Callback callback)
 {
 this.callback = callback;
