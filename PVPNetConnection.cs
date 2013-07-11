@@ -594,7 +594,7 @@ namespace PVPNetConnect
          if (useGarena)
             body = WrapBody(Convert.ToBase64String(Encoding.UTF8.GetBytes(userID + ":" + sessionToken)), "auth", 8);
          else
-            body = WrapBody(Convert.ToBase64String(Encoding.UTF8.GetBytes(user + ":" + sessionToken)), "auth", 8);
+            body = WrapBody(Convert.ToBase64String(Encoding.UTF8.GetBytes(user.ToLower() + ":" + sessionToken)), "auth", 8);
 
          body.type = "flex.messaging.messages.CommandMessage";
 
