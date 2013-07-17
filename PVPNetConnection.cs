@@ -52,6 +52,7 @@ namespace PVPNetConnect
 
       //RTMPS Connection Info
       private bool isConnected = false;
+      private bool isLoggedIn = false;
       private TcpClient client;
       private SslStream sslStream;
       private string ipAddress;
@@ -334,7 +335,7 @@ namespace PVPNetConnect
                while (id - cur > rate)
                {
                   sb.Clear();
-
+                  if(OnLoginQueueUpdate != null)
                   OnLoginQueueUpdate(this, id - cur);
 
                   Thread.Sleep(delay);
@@ -368,8 +369,10 @@ namespace PVPNetConnect
                      sb.Clear();
 
                      if (id - cur < 0)
+                        if (OnLoginQueueUpdate != null)
                         OnLoginQueueUpdate(this, 0);
                      else
+                           if (OnLoginQueueUpdate != null)
                         OnLoginQueueUpdate(this, id - cur);
 
                      Thread.Sleep(delay / 10);
@@ -393,7 +396,7 @@ namespace PVPNetConnect
                   }
                }
             }
-
+            if (OnLoginQueueUpdate != null)
             OnLoginQueueUpdate(this, 0);
             authToken = result.GetString("token");
 
@@ -573,7 +576,7 @@ namespace PVPNetConnect
             body.Add("partnerCredentials", null);
             body.Add("username", user);
          }
-
+         
 
          int id = Invoke("loginService", "login", new object[] { body });
 
@@ -602,42 +605,9 @@ namespace PVPNetConnect
          result = GetResult(id); // Read result (and discard)
 
 
-         // Subscribe to the necessary items
+         
 
-         // gn
-         body = WrapBody(new TypedObject(), "messagingDestination", 0);
-         body.type = "flex.messaging.messages.CommandMessage";
-         TypedObject headers = body.GetTO("headers");
-         headers.Add("DSSubtopic", "gn-" + accountID);
-         headers.Remove("DSRequestTimeout");
-         body["clientId"] = "gn-" + accountID;
-         id = Invoke(body);
-         result = GetResult(id); // Read result and discard
-
-
-         // cn
-         body = WrapBody(new TypedObject(), "messagingDestination", 0);
-         body.type = "flex.messaging.messages.CommandMessage";
-         headers = body.GetTO("headers");
-         headers.Add("DSSubtopic", "cn-" + accountID);
-         headers.Remove("DSRequestTimeout");
-         body["clientId"] = "cn-" + accountID;
-         id = Invoke(body);
-         result = GetResult(id); // Read result and discard
-
-         // bc
-         body = WrapBody(new TypedObject(), "messagingDestination", 0);
-         body.type = "flex.messaging.messages.CommandMessage";
-         headers = body.GetTO("headers");
-         headers.Add("DSSubtopic", "bc");
-         headers.Remove("DSRequestTimeout");
-         body["clientId"] = "bc-" + accountID;
-         id = Invoke(body);
-         result = GetResult(id); // Read result and discard
-
-
-
-
+         isLoggedIn = true;
          if (OnLogin != null)
             OnLogin(this, user, ipAddress);
          return true;
@@ -1061,7 +1031,15 @@ namespace PVPNetConnect
                         TypedObject to = result.GetTO("data");
                         if (to.ContainsKey("body"))
                         {
-                           MessageReceived(to["body"]);
+                           if (to["body"] is TypedObject)
+                           {
+                              TypedObject body = (TypedObject)to["body"];
+                              if (body.type.Equals("com.riotgames.platform.game.GameDTO"))
+                                 MessageReceived(new GameDTO(body));
+                              else if (body.type.Equals("com.riotgames.platform.game.PlayerCredentialsDto"))
+                                 MessageReceived(new PlayerCredentialsDto(body));
+                              //MessageReceived(to["body"]);
+                           }
                         }
                      }
                      //MessageReceived(
@@ -1190,6 +1168,26 @@ namespace PVPNetConnect
          Session result = new Session(messageBody);
          results.Remove(Id);
          return result;
+      }
+
+      public async Task<object> Subscribe(string service, double accountId)
+      {
+         TypedObject body = WrapBody(new TypedObject(), "messagingDestination", 0);
+         body.type = "flex.messaging.messages.CommandMessage";
+         TypedObject headers = body.GetTO("headers");
+         if(service == "bc")
+         headers.Add("DSSubtopic", "bc");
+         else
+            headers.Add("DSSubtopic", service + "-" + accountID);
+         headers.Remove("DSRequestTimeout");
+         body["clientId"] = service + "-" + accountID;
+         int Id = Invoke(body);
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+
+         TypedObject result = GetResult(Id); // Read result and discard
+
+         return null;
       }
 
 
@@ -2170,6 +2168,11 @@ namespace PVPNetConnect
       public bool IsConnected()
       {
          return isConnected;
+      }
+
+      public bool IsLoggedIn()
+      {
+         return isLoggedIn;
       }
       #endregion
    }
