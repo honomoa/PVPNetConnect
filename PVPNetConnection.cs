@@ -22,7 +22,6 @@ using System.Threading;
 using System.Web.Script.Serialization;
 using System.Threading.Tasks;
 
-using PVPNetConnect.Assets;
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Leagues.Pojo;
 using PVPNetConnect.RiotObjects.Platform.Catalog.Champion;
@@ -564,6 +563,7 @@ namespace PVPNetConnect
          body.Add("securityAnswer", null);
          body.Add("locale", locale);
          body.Add("domain", "lolclient.lol.riotgames.com");
+
          body.Add("oldPassword", null);
          body.Add("authToken", authToken);
          if (useGarena)
@@ -1874,8 +1874,34 @@ namespace PVPNetConnect
          return result;
       }
 
+      public async Task<PracticeGameSearchResult[]> GetChampionsForBan()
+      {
+         int Id = Invoke("gameService", "listAllPracticeGames", new object[] { });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         PracticeGameSearchResult[] result = new PracticeGameSearchResult[results[Id].GetTO("data").GetArray("body").Length];
+         for (int i = 0; i < results[Id].GetTO("data").GetArray("body").Length; i++)
+         {
+            result[i] = new PracticeGameSearchResult((TypedObject)results[Id].GetTO("data").GetArray("body")[i]);
+         }
+         results.Remove(Id);
+         return result;
+      }
+
 
       /// 41.)
+      /// 
+      public async Task<object> JoinGame(Double gameId)
+      {
+         int Id = Invoke("gameService", "joinGame", new object[] { gameId, null });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+
+         //object result = (object)results[Id].GetTO("data")["body"];
+         results.Remove(Id);
+         return null;
+      }
+
       public async Task<object> JoinGame(Double gameId, string password)
       {
          int Id = Invoke("gameService", "joinGame", new object[] { gameId, password });
@@ -2154,6 +2180,26 @@ namespace PVPNetConnect
       public async Task<object> AcceptInviteForMatchmakingGame(double gameId)
       {
          int Id = Invoke("matchmakerService", "acceptInviteForMatchmakingGame", new object[] { gameId });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         //object result = (object)results[Id].GetTO("data")["body"];
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<object> AcceptPoppedGame(bool accept)
+      {
+         int Id = Invoke("matchmakerService", "acceptInviteForMatchmakingGame", new object[] { accept });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         //object result = (object)results[Id].GetTO("data")["body"];
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<object> UpdateProfileIconId(Int32 iconId)
+      {
+         int Id = Invoke("summonerService", "updateProfileIconId", new object[] { iconId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
          //object result = (object)results[Id].GetTO("data")["body"];

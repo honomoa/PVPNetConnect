@@ -4,157 +4,201 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace PVPNetConnect.Assets
+namespace PVPNetConnect
 {
-    /// <summary>
-    /// Game Modes enumerator.
-    /// </summary>
-    public enum GameModes
-    {
-        /// <summary>
-        /// CLASSIC enum
-        /// </summary>
-        [StringValue("CLASSIC")]
-        CLASSIC = 1,
-        /// <summary>
-        /// DOMINION enum
-        /// </summary>
-        [StringValue("DOMINION")]
-        DOMINION = 2,
-        /// <summary>
-        /// ARAM enum
-        /// </summary>
-        [StringValue("ARAM")]
-        ARAM = 3
-    }
+   /// <summary>
+   /// Game Modes enumerator.
+   /// </summary>
+   public enum GameMode
+   {
+      [StringValue("CLASSIC")]
+      Classic,
 
-    /// <summary>
-    /// Seasons enumerator.
-    /// </summary>
-    public enum Seasons
-    {
-        /// <summary>
-        /// Current Season Enum
-        /// </summary>
-        [StringValue("CURRENT")]
-        CURRENT = 0,
-        /// <summary>
-        /// Season 1 Enum
-        /// </summary>
-        [StringValue("ONE")]
-        ONE = 1,
-        /// <summary>
-        /// Season 2 Enum
-        /// </summary>
-        [StringValue("TWO")]
-        TWO = 2,
-        /// <summary>
-        /// Season 3 Enum
-        /// </summary>
-        [StringValue("THREE")]
-        THREE = 3
-    }
+      [StringValue("ODIN")]
+      Dominion,
 
-    /// <summary>
-    /// Game types enumerator.
-    /// </summary>
-    public enum GameTypes
-    {
-        /// <summary>
-        /// Normal game enum.
-        /// </summary>
-        [StringValue("NORMAL_GAME")]
-        NORMAL_GAME = 0,
-        /// <summary>
-        /// Ranked game enum.
-        /// </summary>
-        [StringValue("RANKED_GAME")]
-        RANKED_GAME = 1,
-        /// <summary>
-        /// Matched game enum.
-        /// </summary>
-        [StringValue("MATCHED_GAME")]
-        MATCHED_GAME = 2,
-        /// <summary>
-        /// Practice game enum.
-        /// </summary>
-        [StringValue("PRACTICE_GAME")]
-        PRACTICE_GAME = 3
-    }
+      [StringValue("ARAM")]
+      Aram,
 
-    /// <summary>
-    /// Queue types Enumeartor.
-    /// </summary>
-    public enum QueueTypes
-    {
-        /// <summary>
-        /// Normal 5x5 queue enum.
-        /// </summary>
-        [StringValue("NORMAL_5x5")]
-        NORMAL_5x5 = 0,
-        /// <summary>
-        /// Ranked Solo 5x5 queue enum.
-        /// </summary>
-        [StringValue("RANKED_SOLO_5x5")]
-        RANKED_SOLO_5x5 = 1,
-        /// <summary>
-        /// Ranked team 5x5 queue enum.
-        /// </summary>
-        [StringValue("RANKED_TEAM_5x5")]
-        RANKED_TEAM_5x5 = 2,
-        /// <summary>
-        /// Ranked team 3x3 queue enum.
-        /// </summary>
-        [StringValue("RANKED_TEAM_3x3")]
-        RANKED_TEAM_3x3 = 3
-    }
+      [StringValue("TUTORIAL")]
+      Tutorial,
+   }
 
-    /// <summary>
-    /// The StringEnum value with GetStringValue method
-    /// </summary>
-    public static class StringEnum
-    {
-        /// <summary>
-        /// Gets the string value from Atrribute.
-        /// </summary>
-        /// <param name="value">Enum value.</param>
-        /// <returns></returns>
-        public static string GetStringValue(Enum value)
-        {
-            string output = null;
-            Type type = value.GetType();
+   /// <summary>
+   /// Seasons enumerator.
+   /// </summary>
+   public enum CompetitiveSeason
+   {
+      [StringValue("CURRENT")]
+      Current,
 
-            //Check first in our cached results...
+      [StringValue("ONE")]
+      One,
 
-            //Look for our 'StringValueAttribute' 
+      [StringValue("TWO")]
+      Two
+   }
 
-            //in the field's custom attributes
+   /// <summary>
+   /// Game types enumerator.
+   /// </summary>
+   public enum GameType
+   {
+      [StringValue("RANKED_TEAM_GAME")]
+      RankedTeamGame,
 
-            FieldInfo fi = type.GetField(value.ToString());
-            StringValue[] attrs =
-               fi.GetCustomAttributes(typeof(StringValue),
-                                       false) as StringValue[];
-            if (attrs.Length > 0)
-            {
-                output = attrs[0].Value;
-            }
+      [StringValue("RANKED_GAME")]
+      RankedGame,
 
-            return output;
-        }
-    }
+      [StringValue("NORMAL_GAME")]
+      NormalGame,
 
-    public class StringValue : System.Attribute
-    {
-        private string _value;
+      [StringValue("CUSTOM_GAME")]
+      CustomGame,
 
-        public StringValue(string value)
-        {
-            _value = value;
-        }
+      [StringValue("TUTORIAL_GAME")]
+      TutorialGame,
 
-        public string Value
-        {
-            get { return _value; }
-        }
-    }
+      [StringValue("PRACTICE_GAME")]
+      PracticeGame,
+
+      [StringValue("RANKED_GAME_SOLO")]
+      RankedGameSolo,
+
+      [StringValue("COOP_VS_AI")]
+      CoopVsAi,
+
+      [StringValue("RANKED_GAME_PREMADE")]
+      RankedGamePremade
+   }
+
+   /// <summary>
+   /// Queue types Enumeartor.
+   /// </summary>
+   public enum QueueType
+   {
+      [StringValue("RANKED_TEAM3x3")]
+      RankedTeam3x3,
+
+      [StringValue("RANKED_SOLO_3x3")]
+      RankedSolo3x3,
+
+      [StringValue("RANKED_SOLO_5x5")]
+      RankedSolo5x5,
+
+      [StringValue("RANKED_TEAM_5x5")]
+      RankedTeam5x5,
+
+      [StringValue("ODIN_UNRANKED")]
+      DominionUnranked,
+
+      [StringValue("RANKED_PREMADE_3x3")]
+      RankedPremade3x3,
+
+      [StringValue("NORMAL_3x3")]
+      Normal3x3,
+
+      [StringValue("RANKED_PREMADE_5x5")]
+      RankedPremade5x5,
+
+      [StringValue("ODIN_RANKED_PREMADE")]
+      DominionRankedPremade,
+
+      [StringValue("BOT_3x3")]
+      Bot3x3,
+
+      [StringValue("ODIN_RANKED_SOLO")]
+      DominionRankedSolo,
+
+      [StringValue("NORMAL")]
+      Normal,
+
+      [StringValue("BOT")]
+      Bot,
+
+      [StringValue("ARAM_UNRANKED_1x1")]
+      AramUnranked1x1,
+
+      [StringValue("ARAM_UNRANKED_3x3")]
+      AramUnranked3x3,
+
+      [StringValue("NONE")]
+      None,
+
+      [StringValue("ARAM_UNRANKED_5x5")]
+      AramUnranked5x5,
+
+      [StringValue("ARAM_UNRANKED_2x2")]
+      AramUnranked2x2,
+
+      [StringValue("ARAM_UNRANKED_6x6")]
+      AramUnranked6x6,
+
+      [StringValue("RANKED_SOLO_1x1")]
+      RankedSolo1x1
+   }
+
+   public enum AllowSpectators
+   {
+      [StringValue("ALL")]
+      All,
+
+      [StringValue("LOBBYONLY")]
+      LobbyOnly,
+
+      [StringValue("DROPINONLY")]
+      DropInOnly,
+
+      [StringValue("NONE")]
+      None
+   }
+
+   /// <summary>
+   /// The StringEnum value with GetStringValue method
+   /// </summary>
+   public static class StringEnum
+   {
+      /// <summary>
+      /// Gets the string value from Atrribute.
+      /// </summary>
+      /// <param name="value">Enum value.</param>
+      /// <returns></returns>
+      public static string GetStringValue(Enum value)
+      {
+         string output = null;
+         Type type = value.GetType();
+
+         //Check first in our cached results...
+
+         //Look for our 'StringValueAttribute' 
+
+         //in the field's custom attributes
+
+         FieldInfo fi = type.GetField(value.ToString());
+         StringValue[] attrs =
+            fi.GetCustomAttributes(typeof(StringValue),
+                                    false) as StringValue[];
+         if (attrs.Length > 0)
+         {
+            output = attrs[0].Value;
+         }
+
+         return output;
+      }
+   }
+
+   public class StringValue : System.Attribute
+   {
+      private string _value;
+
+      public StringValue(string value)
+      {
+         _value = value;
+      }
+
+      public string Value
+      {
+         get { return _value; }
+      }
+   }
 }
