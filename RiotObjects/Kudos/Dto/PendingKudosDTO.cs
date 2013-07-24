@@ -43,7 +43,7 @@ callback(this);
 }
 
 [InternalName("pendingCounts")]
-public List<Int32> PendingCounts { get; set; }
+public Int32[] PendingCounts { get; set; }
 
 }
 }

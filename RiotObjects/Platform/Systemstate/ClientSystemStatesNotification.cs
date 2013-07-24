@@ -91,7 +91,7 @@ public Boolean ArchivedStatsEnabled { get; set; }
 public Dictionary<String, Object> QueueThrottleDTO { get; set; }
 
 [InternalName("gameMapEnabledDTOList")]
-public Dictionary<String, Object>[] GameMapEnabledDTOList { get; set; }
+public List<Dictionary<String, Object>> GameMapEnabledDTOList { get; set; }
 
 [InternalName("storeCustomerEnabled")]
 public Boolean StoreCustomerEnabled { get; set; }

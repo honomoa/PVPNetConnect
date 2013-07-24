@@ -46,7 +46,7 @@ callback(this);
 public object StatsJson { get; set; }
 
 [InternalName("stats")]
-public List<object> Stats { get; set; }
+public List<SummaryAggStat> Stats { get; set; }
 
 }
 }
