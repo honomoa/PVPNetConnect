@@ -63,10 +63,12 @@
     <Compile Include="RiotObjects\Platform\Clientfacade\Domain\LoginDataPacket.cs" />
     <Compile Include="RiotObjects\Platform\Game\BannedChampion.cs" />
     <Compile Include="RiotObjects\Platform\Game\BotParticipant.cs" />
+    <Compile Include="RiotObjects\Platform\Game\ChampionBanInfoDTO.cs" />
     <Compile Include="RiotObjects\Platform\Game\GameDTO.cs" />
     <Compile Include="RiotObjects\Platform\Game\GameObserver.cs" />
     <Compile Include="RiotObjects\Platform\Game\GameTypeConfigDTO.cs" />
     <Compile Include="RiotObjects\Platform\Game\Map\GameMap.cs" />
+    <Compile Include="RiotObjects\Platform\Game\Message\GameNotification.cs" />
     <Compile Include="RiotObjects\Platform\Game\ObfruscatedParticipant.cs" />
     <Compile Include="RiotObjects\Platform\Game\Participant.cs" />
     <Compile Include="RiotObjects\Platform\Game\PlatformGameLifecycleDTO.cs" />

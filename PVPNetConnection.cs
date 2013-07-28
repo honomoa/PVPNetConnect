@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 
 using PVPNetConnect.RiotObjects;
 using PVPNetConnect.RiotObjects.Platform.Game;
+using PVPNetConnect.RiotObjects.Platform.Game.Message;
+using PVPNetConnect.RiotObjects.Platform.Matchmaking;
 
 
 namespace PVPNetConnect
@@ -602,6 +604,11 @@ namespace PVPNetConnect
          return message.GetTO("data").GetTO("rootCause").GetString("message");
       }
 
+      private string GetErrorCode(TypedObject message)
+      {
+         return message.GetTO("data").GetTO("rootCause").GetString("errorCode");
+      }
+
 
       private void StartHeartbeat()
       {
@@ -670,16 +677,21 @@ namespace PVPNetConnect
       #endregion
 
       #region Error Methods
-
-      private void Error(string message, ErrorType type)
+      private void Error(string message, string errorCode, ErrorType type)
       {
          Error error = new Error()
          {
             Type = type,
             Message = message,
+            ErrorCode = errorCode
          };
+
          if (OnError != null)
             OnError(this, error);
+      }
+      private void Error(string message, ErrorType type)
+      {
+         Error(message, "", type);
       }
       #endregion
 
@@ -1004,7 +1016,7 @@ namespace PVPNetConnect
                   //If it isn't, give an error and remove the callback if there is one.
                   if (result["result"].Equals("_error"))
                   {
-                     Error("Warning, invalid result " + GetErrorMessage(result), ErrorType.Receive);
+                     Error(GetErrorMessage(result), GetErrorCode(result), ErrorType.Receive);
                   }
 
                   if (result["result"].Equals("receive"))
@@ -1023,6 +1035,10 @@ namespace PVPNetConnect
                                        MessageReceived(new GameDTO(body));
                                     else if (body.type.Equals("com.riotgames.platform.game.PlayerCredentialsDto"))
                                        MessageReceived(new PlayerCredentialsDto(body));
+                                    else if (body.type.Equals("com.riotgames.platform.game.message.GameNotification"))
+                                       MessageReceived(new GameNotification(body));
+                                    else if (body.type.Equals("com.riotgames.platform.matchmaking.SearchingForMatchNotification"))
+                                       MessageReceived(new SearchingForMatchNotification(body));
                                     //MessageReceived(to["body"]);
                                  })).Start();
                            }
@@ -1066,7 +1082,7 @@ namespace PVPNetConnect
                if (IsConnected())
                   Error(e.Message, ErrorType.Receive);
 
-               Disconnect();
+               //Disconnect();
             }
          });
          decodeThread.Start();

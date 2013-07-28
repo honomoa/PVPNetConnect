@@ -141,16 +141,16 @@ namespace PVPNetConnect
    public enum AllowSpectators
    {
       [StringValue("ALL")]
-      All,
+      All = 1,
 
       [StringValue("LOBBYONLY")]
-      LobbyOnly,
+      LobbyOnly = 2,
 
       [StringValue("DROPINONLY")]
-      DropInOnly,
+      DropInOnly = 3,
 
       [StringValue("NONE")]
-      None
+      None = 0
    }
 
    /// <summary>

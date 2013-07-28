@@ -195,7 +195,6 @@ namespace PVPNetConnect
          int Id = Invoke("playerPreferencesService", "loadPreferencesByKey", new object[] { arg0, arg1, arg2 });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -532,7 +531,6 @@ namespace PVPNetConnect
          int Id = Invoke("summonerTeamService", "disbandTeam", new object[] { teamId.GetBaseTypedObject() });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -752,21 +750,6 @@ namespace PVPNetConnect
          return result;
       }
 
-      public async Task<PracticeGameSearchResult[]> GetChampionsForBan()
-      {
-         int Id = Invoke("gameService", "listAllPracticeGames", new object[] { });
-         while (!results.ContainsKey(Id))
-            await Task.Delay(10);
-         PracticeGameSearchResult[] result = new PracticeGameSearchResult[results[Id].GetTO("data").GetArray("body").Length];
-         for (int i = 0; i < results[Id].GetTO("data").GetArray("body").Length; i++)
-         {
-            result[i] = new PracticeGameSearchResult((TypedObject)results[Id].GetTO("data").GetArray("body")[i]);
-         }
-         results.Remove(Id);
-         return result;
-      }
-
-
       /// 41.)
       /// 
       public async Task<object> JoinGame(Double gameId)
@@ -774,8 +757,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "joinGame", new object[] { gameId, null });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -785,8 +766,24 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "joinGame", new object[] { gameId, password });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
+         results.Remove(Id);
+         return null;
+      }
 
-         //object result = (object)results[Id].GetTO("data")["body"];
+      public async Task<object> ObserveGame(Double gameId)
+      {
+         int Id = Invoke("gameService", "observeGame", new object[] { gameId, null });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<object> ObserveGame(Double gameId, string password)
+      {
+         int Id = Invoke("gameService", "observeGame", new object[] { gameId, password });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
          results.Remove(Id);
          return null;
       }
@@ -847,7 +844,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "quitGame", new object[] { });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -878,7 +874,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "selectBotChampion", new object[] { arg0, arg1.GetBaseTypedObject() });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -890,20 +885,19 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "removeBotChampion", new object[] { arg0, arg1.GetBaseTypedObject() });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
 
 
       /// 49.)
-      public void StartChampionSelection(Double gameId, Int32 optomisticLock, StartChampSelectDTO.Callback callback)
+      public void StartChampionSelection(Double gameId, Double optomisticLock, StartChampSelectDTO.Callback callback)
       {
          StartChampSelectDTO cb = new StartChampSelectDTO(callback);
          InvokeWithCallback("gameService", "startChampionSelection", new object[] { gameId, optomisticLock }, cb);
       }
 
-      public async Task<StartChampSelectDTO> StartChampionSelection(Double gameId, Int32 optomisticLock)
+      public async Task<StartChampSelectDTO> StartChampionSelection(Double gameId, Double optomisticLock)
       {
          int Id = Invoke("gameService", "startChampionSelection", new object[] { gameId, optomisticLock });
          while (!results.ContainsKey(Id))
@@ -916,12 +910,11 @@ namespace PVPNetConnect
 
 
       /// 50.)
-      public async Task<object> SetClientReceivedGameMessage(Double arg0, String arg1)
+      public async Task<object> SetClientReceivedGameMessage(Double gameId, String arg1)
       {
-         int Id = Invoke("gameService", "setClientReceivedGameMessage", new object[] { arg0, arg1 });
+         int Id = Invoke("gameService", "setClientReceivedGameMessage", new object[] { gameId, arg1 });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -952,7 +945,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "selectSpells", new object[] { spellOneId, spellTwoId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -983,7 +975,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "selectChampion", new object[] { championId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -995,7 +986,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "selectChampionSkin", new object[] { championId, skinId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -1007,7 +997,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "championSelectCompleted", new object[] { });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -1019,7 +1008,6 @@ namespace PVPNetConnect
          int Id = Invoke("gameService", "setClientReceivedMaestroMessage", new object[] { arg0, arg1 });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -1060,7 +1048,6 @@ namespace PVPNetConnect
          int Id = Invoke("matchmakerService", "acceptInviteForMatchmakingGame", new object[] { gameId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -1070,7 +1057,6 @@ namespace PVPNetConnect
          int Id = Invoke("matchmakerService", "acceptInviteForMatchmakingGame", new object[] { accept });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
       }
@@ -1080,9 +1066,49 @@ namespace PVPNetConnect
          int Id = Invoke("summonerService", "updateProfileIconId", new object[] { iconId });
          while (!results.ContainsKey(Id))
             await Task.Delay(10);
-         //object result = (object)results[Id].GetTO("data")["body"];
          results.Remove(Id);
          return null;
+      }
+
+      public async Task<object> BanUserFromGame(double gameId, double accountId)
+      {
+         int Id = Invoke("gameService", "banUserFromGame", new object[] { gameId, accountId });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<object> BanObserverFromGame(double gameId, double accountId)
+      {
+         int Id = Invoke("gameService", "banObserverFromGame", new object[] { gameId, accountId });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<object> BanChampion(int championId)
+      {
+         int Id = Invoke("gameService", "banChampion", new object[] { championId });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         results.Remove(Id);
+         return null;
+      }
+
+      public async Task<ChampionBanInfoDTO[]> GetChampionsForBan()
+      {
+         int Id = Invoke("gameService", "getChampionsForBan", new object[] { });
+         while (!results.ContainsKey(Id))
+            await Task.Delay(10);
+         ChampionBanInfoDTO[] result = new ChampionBanInfoDTO[results[Id].GetTO("data").GetArray("body").Length];
+         for (int i = 0; i < results[Id].GetTO("data").GetArray("body").Length; i++)
+         {
+            result[i] = new ChampionBanInfoDTO((TypedObject)results[Id].GetTO("data").GetArray("body")[i]);
+         }
+         results.Remove(Id);
+         return result;
       }
    }
 }

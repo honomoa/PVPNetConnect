@@ -19,6 +19,7 @@ namespace PVPNetConnect
    public class Error
    {
       public ErrorType Type;
-      public string Message;
+      public string Message = "";
+      public string ErrorCode = "";
    }
 }

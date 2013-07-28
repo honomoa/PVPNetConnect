@@ -39,43 +39,61 @@ namespace PVPNetConnect.RiotObjects
             if (intern == null)
                continue;
 
-            object value;
+            object value = null;
 
             var type = prop.PropertyType;
 
             string typeName = type.Name;
-
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            if (type == typeof (int[]))
+            {
+               var test = prop.GetValue(this) as int[];
+               if (test != null) value = test.Cast<object>().ToArray();
+            }
+            else if (type == typeof(double[]))
+            {
+               var test = prop.GetValue(this) as double[];
+               if (test != null) value = test.Cast<object>().ToArray();
+            }
+            else if (type == typeof(string[]))
+            {
+               var test = prop.GetValue(this) as string[];
+               if (test != null) value = test.Cast<object>().ToArray();
+            }
+               //List = Array Collection. Object array = object array
+            else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
             {
                IList listValues = prop.GetValue(this) as IList;
-               object[] finalArray = new object[listValues.Count];
-               listValues.CopyTo(finalArray, 0);
-               List<object> finalObjList = new List<object>();
-               foreach (object ob in finalArray)
+               if (listValues != null)
                {
-                  Type obType = ob.GetType();
-
-                  if (typeof(RiotGamesObject).IsAssignableFrom(obType))
+                  object[] finalArray = new object[listValues.Count];
+                  listValues.CopyTo(finalArray, 0);
+                  List<object> finalObjList = new List<object>();
+                  foreach (object ob in finalArray)
                   {
-                     RiotGamesObject rgo = ob as RiotGamesObject;
+                     Type obType = ob.GetType();
 
-                     value = rgo.GetBaseTypedObject();
+                     if (typeof(RiotGamesObject).IsAssignableFrom(obType))
+                     {
+                        RiotGamesObject rgo = ob as RiotGamesObject;
+
+                        value = rgo.GetBaseTypedObject();
+                     }
+
+                     else
+                     {
+                        value = ob;
+                     }
+
+                     finalObjList.Add(value);
                   }
-
-                  else
-                  {
-                     value = ob;
-                  }
-
-                  finalObjList.Add(value);
+                  value = TypedObject.MakeArrayCollection(finalObjList.ToArray());
                }
-               value = TypedObject.MakeArrayCollection(finalObjList.ToArray());
             }
             else if (typeof(RiotGamesObject).IsAssignableFrom(type))
             {
                RiotGamesObject rgo = prop.GetValue(this) as RiotGamesObject;
 
-               value = rgo.GetBaseTypedObject();
+               if (rgo != null) value = rgo.GetBaseTypedObject();
             }
             else
             {
@@ -86,14 +104,15 @@ namespace PVPNetConnect.RiotObjects
          }
 
          Type objectBaseType = objectType.BaseType;
-         foreach (var prop in objectBaseType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
-         {
-            var intern = prop.GetCustomAttributes(typeof(InternalNameAttribute), false).FirstOrDefault() as InternalNameAttribute;
-            if (intern == null || typedObject.ContainsKey(intern.Name))
-               continue;
+         if (objectBaseType != null)
+            foreach (var prop in objectBaseType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+            {
+               var intern = prop.GetCustomAttributes(typeof(InternalNameAttribute), false).FirstOrDefault() as InternalNameAttribute;
+               if (intern == null || typedObject.ContainsKey(intern.Name))
+                  continue;
 
-            typedObject.Add(intern.Name, prop.GetValue(this));
-         }
+               typedObject.Add(intern.Name, prop.GetValue(this));
+            }
 
          return typedObject;
       }
