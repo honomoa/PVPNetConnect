@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PVPNetConnect.RiotObjects.Platform.Game
+namespace PVPThreatConnect.RiotObjects.Platform.Game
 {
    public class ObfruscatedParticipant : Participant
    {

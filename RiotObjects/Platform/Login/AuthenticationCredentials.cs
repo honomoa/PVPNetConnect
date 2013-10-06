@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Login
+namespace PVPThreatConnect.RiotObjects.Platform.Login
 {
 
 public class AuthenticationCredentials : RiotGamesObject

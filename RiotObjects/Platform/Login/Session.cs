@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Account;
+using PVPThreatConnect.RiotObjects.Platform.Account;
 
-namespace PVPNetConnect.RiotObjects.Platform.Login
+namespace PVPThreatConnect.RiotObjects.Platform.Login
 {
 
 public class Session : RiotGamesObject

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Game;
+using PVPThreatConnect.RiotObjects.Platform.Game;
 
-namespace PVPNetConnect.RiotObjects.Platform.Game.Practice
+namespace PVPThreatConnect.RiotObjects.Platform.Game.Practice
 {
 
 public class PracticeGameSearchResult : RiotGamesObject

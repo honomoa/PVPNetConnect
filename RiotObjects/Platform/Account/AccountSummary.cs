@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Account
+namespace PVPThreatConnect.RiotObjects.Platform.Account
 {
 
 public class AccountSummary : RiotGamesObject

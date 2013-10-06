@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Statistics;
+using PVPThreatConnect.RiotObjects.Platform.Statistics;
 
-namespace PVPNetConnect.RiotObjects.Platform.Statistics.Team
+namespace PVPThreatConnect.RiotObjects.Platform.Statistics.Team
 {
 
 public class TeamPlayerAggregatedStatsDTO : RiotGamesObject

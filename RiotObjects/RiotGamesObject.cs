@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace PVPNetConnect.RiotObjects
+namespace PVPThreatConnect.RiotObjects
 {
 	/// <summary>
 	/// RiotGamesObject is the base class for all Riot objects.
@@ -208,17 +208,17 @@ namespace PVPNetConnect.RiotObjects
 							{
 								objectList.Add((string)data);
 							}
-							else if (elementType == typeof(PVPNetConnect.RiotObjects.Platform.Game.Participant))
+							else if (elementType == typeof(PVPThreatConnect.RiotObjects.Platform.Game.Participant))
 							{
 								TypedObject dataAsTo = (TypedObject)data;
 								if (dataAsTo.type == "com.riotgames.platform.game.BotParticipant")
-									objectList.Add(new PVPNetConnect.RiotObjects.Platform.Game.BotParticipant(dataAsTo));
+									objectList.Add(new PVPThreatConnect.RiotObjects.Platform.Game.BotParticipant(dataAsTo));
 								else if (dataAsTo.type == "com.riotgames.platform.game.ObfruscatedParticipant")
-									objectList.Add(new PVPNetConnect.RiotObjects.Platform.Game.ObfruscatedParticipant(dataAsTo));
+									objectList.Add(new PVPThreatConnect.RiotObjects.Platform.Game.ObfruscatedParticipant(dataAsTo));
 								else if (dataAsTo.type == "com.riotgames.platform.game.PlayerParticipant")
-									objectList.Add(new PVPNetConnect.RiotObjects.Platform.Game.PlayerParticipant(dataAsTo));
+									objectList.Add(new PVPThreatConnect.RiotObjects.Platform.Game.PlayerParticipant(dataAsTo));
 								else if (dataAsTo.type == "com.riotgames.platform.reroll.pojo.AramPlayerParticipant")
-									objectList.Add(new PVPNetConnect.RiotObjects.Platform.Reroll.Pojo.AramPlayerParticipant(dataAsTo));
+									objectList.Add(new PVPThreatConnect.RiotObjects.Platform.Reroll.Pojo.AramPlayerParticipant(dataAsTo));
 							}
 							else
 							{

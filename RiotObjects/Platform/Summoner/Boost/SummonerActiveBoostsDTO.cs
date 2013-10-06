@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Summoner.Boost
+namespace PVPThreatConnect.RiotObjects.Platform.Summoner.Boost
 {
 
 public class SummonerActiveBoostsDTO : RiotGamesObject

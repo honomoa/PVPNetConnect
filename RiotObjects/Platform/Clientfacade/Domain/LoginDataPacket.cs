@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Statistics;
-using PVPNetConnect.RiotObjects.Platform.Summoner;
-using PVPNetConnect.RiotObjects.Platform.Broadcast;
-using PVPNetConnect.RiotObjects.Platform.Systemstate;
-using PVPNetConnect.RiotObjects.Kudos.Dto;
-using PVPNetConnect.RiotObjects.Platform.Game;
+using PVPThreatConnect.RiotObjects.Platform.Statistics;
+using PVPThreatConnect.RiotObjects.Platform.Summoner;
+using PVPThreatConnect.RiotObjects.Platform.Broadcast;
+using PVPThreatConnect.RiotObjects.Platform.Systemstate;
+using PVPThreatConnect.RiotObjects.Kudos.Dto;
+using PVPThreatConnect.RiotObjects.Platform.Game;
 
-namespace PVPNetConnect.RiotObjects.Platform.Clientfacade.Domain
+namespace PVPThreatConnect.RiotObjects.Platform.Clientfacade.Domain
 {
 
 public class LoginDataPacket : RiotGamesObject

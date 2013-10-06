@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace PVPNetConnect
+namespace PVPThreatConnect
 {
 	 public class RTMPSDecoder
 	 {

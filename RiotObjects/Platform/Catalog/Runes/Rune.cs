@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Catalog;
+using PVPThreatConnect.RiotObjects.Platform.Catalog;
 
-namespace PVPNetConnect.RiotObjects.Platform.Catalog.Runes
+namespace PVPThreatConnect.RiotObjects.Platform.Catalog.Runes
 {
 
 public class Rune : RiotGamesObject

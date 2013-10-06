@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Summoner.Masterybook
+namespace PVPThreatConnect.RiotObjects.Platform.Summoner.Masterybook
 {
 
 public class MasteryBookDTO : RiotGamesObject

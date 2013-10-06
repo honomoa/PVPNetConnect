@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Matchmaking
+namespace PVPThreatConnect.RiotObjects.Platform.Matchmaking
 {
 
 public class QueueInfo : RiotGamesObject

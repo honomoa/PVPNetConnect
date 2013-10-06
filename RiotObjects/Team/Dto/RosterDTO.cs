@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Team.Dto
+namespace PVPThreatConnect.RiotObjects.Team.Dto
 {
 
 public class RosterDTO : RiotGamesObject

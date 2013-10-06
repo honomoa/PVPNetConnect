@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PVPNetConnect.RiotObjects.Platform.Game.Message
+namespace PVPThreatConnect.RiotObjects.Platform.Game.Message
 {
    public class GameNotification : RiotGamesObject
    {

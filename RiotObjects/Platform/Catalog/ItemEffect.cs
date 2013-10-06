@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Catalog
+namespace PVPThreatConnect.RiotObjects.Platform.Catalog
 {
 
 public class ItemEffect : RiotGamesObject

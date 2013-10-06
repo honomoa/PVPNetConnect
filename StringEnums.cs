@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace PVPNetConnect
+namespace PVPThreatConnect
 {
 	/// <summary>
 	/// Game Modes enumerator.

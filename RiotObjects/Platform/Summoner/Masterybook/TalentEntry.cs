@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Summoner;
+using PVPThreatConnect.RiotObjects.Platform.Summoner;
 
-namespace PVPNetConnect.RiotObjects.Platform.Summoner.Masterybook
+namespace PVPThreatConnect.RiotObjects.Platform.Summoner.Masterybook
 {
 
 public class TalentEntry : RiotGamesObject

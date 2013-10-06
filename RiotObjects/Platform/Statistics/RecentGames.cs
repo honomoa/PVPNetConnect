@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects;
+using PVPThreatConnect.RiotObjects;
 
-namespace PVPNetConnect.RiotObjects.Platform.Statistics
+namespace PVPThreatConnect.RiotObjects.Platform.Statistics
 {
 
 public class RecentGames : RiotGamesObject

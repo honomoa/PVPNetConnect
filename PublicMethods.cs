@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace PVPNetConnect
+namespace PVPThreatConnect
 {
 	public partial class PVPNetConnection
 	{

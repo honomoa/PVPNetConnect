@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading;
 using System.Web.Script.Serialization;
 
-using PVPNetConnect.RiotObjects;
-using PVPNetConnect.RiotObjects.Platform.Game;
-using PVPNetConnect.RiotObjects.Platform.Game.Message;
-using PVPNetConnect.RiotObjects.Platform.Matchmaking;
+using PVPThreatConnect.RiotObjects;
+using PVPThreatConnect.RiotObjects.Platform.Game;
+using PVPThreatConnect.RiotObjects.Platform.Game.Message;
+using PVPThreatConnect.RiotObjects.Platform.Matchmaking;
 
-namespace PVPNetConnect
+namespace PVPThreatConnect
 {
 	public partial class PVPNetConnection
 	{

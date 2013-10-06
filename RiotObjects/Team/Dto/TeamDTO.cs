@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Team.Stats;
-using PVPNetConnect.RiotObjects.Team;
+using PVPThreatConnect.RiotObjects.Team.Stats;
+using PVPThreatConnect.RiotObjects.Team;
 
-namespace PVPNetConnect.RiotObjects.Team.Dto
+namespace PVPThreatConnect.RiotObjects.Team.Dto
 {
 
 public class TeamDTO : RiotGamesObject

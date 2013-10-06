@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PVPNetConnect.RiotObjects.Platform.Messaging
+namespace PVPThreatConnect.RiotObjects.Platform.Messaging
 {
    class StoreAccountBalanceNotification : RiotGamesObject
    {

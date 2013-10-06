@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Leagues.Pojo;
+using PVPThreatConnect.RiotObjects.Leagues.Pojo;
 
-namespace PVPNetConnect.RiotObjects.Platform.Leagues.Client.Dto
+namespace PVPThreatConnect.RiotObjects.Platform.Leagues.Client.Dto
 {
 
 public class SummonerLeaguesDTO : RiotGamesObject

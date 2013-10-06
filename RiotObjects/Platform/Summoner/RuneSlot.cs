@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Catalog.Runes;
+using PVPThreatConnect.RiotObjects.Platform.Catalog.Runes;
 
-namespace PVPNetConnect.RiotObjects.Platform.Summoner
+namespace PVPThreatConnect.RiotObjects.Platform.Summoner
 {
 
 public class RuneSlot : RiotGamesObject

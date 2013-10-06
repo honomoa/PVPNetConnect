@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Leagues.Pojo
+namespace PVPThreatConnect.RiotObjects.Leagues.Pojo
 {
 
 public class LeagueItemDTO : RiotGamesObject

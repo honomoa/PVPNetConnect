@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Harassment
+namespace PVPThreatConnect.RiotObjects.Platform.Harassment
 {
 
 public class LcdsResponseString : RiotGamesObject

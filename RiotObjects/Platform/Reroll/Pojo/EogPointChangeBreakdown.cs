@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PVPNetConnect.RiotObjects.Platform.Reroll.Pojo
+namespace PVPThreatConnect.RiotObjects.Platform.Reroll.Pojo
 {
    class EogPointChangeBreakdown : RiotGamesObject
    {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Catalog.Runes
+namespace PVPThreatConnect.RiotObjects.Platform.Catalog.Runes
 {
 
 public class RuneType : RiotGamesObject

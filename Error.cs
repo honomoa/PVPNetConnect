@@ -1,4 +1,4 @@
-﻿namespace PVPNetConnect
+﻿namespace PVPThreatConnect
 {
 	public enum ErrorType
 	{

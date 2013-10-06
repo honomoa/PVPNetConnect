@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PVPNetConnect
+namespace PVPThreatConnect
 {
 	public class TypedObject : Dictionary<string, object>
 	{

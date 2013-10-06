@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Kudos.Dto
+namespace PVPThreatConnect.RiotObjects.Kudos.Dto
 {
 
 public class PendingKudosDTO : RiotGamesObject

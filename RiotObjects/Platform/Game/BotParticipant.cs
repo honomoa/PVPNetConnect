@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects.Platform.Catalog.Champion;
+using PVPThreatConnect.RiotObjects.Platform.Catalog.Champion;
 
-namespace PVPNetConnect.RiotObjects.Platform.Game
+namespace PVPThreatConnect.RiotObjects.Platform.Game
 {
 
 public class BotParticipant : Participant

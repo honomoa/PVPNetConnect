@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Summoner.Runes
+namespace PVPThreatConnect.RiotObjects.Platform.Summoner.Runes
 {
 
 public class SummonerRuneInventory : RiotGamesObject

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PVPNetConnect.RiotObjects;
+using PVPThreatConnect.RiotObjects;
 
-namespace PVPNetConnect.RiotObjects.Platform.Catalog.Champion
+namespace PVPThreatConnect.RiotObjects.Platform.Catalog.Champion
 {
 
 public class ChampionDTO : RiotGamesObject

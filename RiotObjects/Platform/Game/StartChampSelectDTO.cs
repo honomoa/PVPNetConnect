@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Game
+namespace PVPThreatConnect.RiotObjects.Platform.Game
 {
 
 public class StartChampSelectDTO : RiotGamesObject

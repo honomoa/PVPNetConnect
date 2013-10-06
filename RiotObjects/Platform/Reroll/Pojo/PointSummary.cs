@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PVPNetConnect.RiotObjects.Platform.Reroll.Pojo
+namespace PVPThreatConnect.RiotObjects.Platform.Reroll.Pojo
 {
 
 public class PointSummary : RiotGamesObject
