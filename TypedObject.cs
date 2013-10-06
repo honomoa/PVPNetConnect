@@ -19,8 +19,6 @@ namespace PVPNetConnect
 {
 	public class TypedObject : Dictionary<string, object>
 	{
-		private static long serialVersionUID = 1244827787088018807L;
-
 		public string type;
 
 		public TypedObject()

@@ -44,8 +44,8 @@ namespace PVPNetConnect
 
 		/** Garena information */
 		private bool useGarena = false;
-		private string garenaToken;
-		private string userID;
+		private string garenaToken { get; set; }
+		private string userID { get; set; }
 
 
 		//Invoke Variables

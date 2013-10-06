@@ -33,7 +33,7 @@ public AramPlayerParticipant(TypedObject result)
 base.SetFields(this, result);
 }
 
-public delegate void Callback(AramPlayerParticipant result);
+public new delegate void Callback(AramPlayerParticipant result);
 
 private Callback callback;
 

@@ -33,7 +33,7 @@ public BotParticipant(TypedObject result)
 base.SetFields(this, result);
 }
 
-public delegate void Callback(BotParticipant result);
+public new delegate void Callback(BotParticipant result);
 
 private Callback callback;
 

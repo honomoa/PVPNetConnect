@@ -32,7 +32,7 @@ namespace PVPNetConnect.RiotObjects.Platform.Game
          base.SetFields(this, result);
       }
 
-      public delegate void Callback(ObfruscatedParticipant result);
+      public new delegate void Callback(ObfruscatedParticipant result);
 
       private Callback callback;
 
