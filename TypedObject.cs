@@ -1,18 +1,5 @@
-﻿/**
- * A very basic RTMPS client
- *
- * @author Gabriel Van Eyck
- */
-///////////////////////////////////////////////////////////////////////////////// 
-//
-//Ported to C# by Ryan A. LaSarre
-//
-/////////////////////////////////////////////////////////////////////////////////
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace PVPNetConnect
