@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\StringEnums.cs" />
+    <Compile Include="StringEnums.cs" />
     <Compile Include="ClassDefinition.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="Packet.cs" />

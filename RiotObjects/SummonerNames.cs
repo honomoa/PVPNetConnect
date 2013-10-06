@@ -5,19 +5,19 @@ using System.Text;
 
 namespace PVPNetConnect.RiotObjects
 {
-    public class SummonerNames : RiotGamesObject
-    {
-        public SummonerNames(Callback callback)
-        {
-            this.callback = callback;
-        }
+	public class SummonerNames : RiotGamesObject
+	{
+		public SummonerNames(Callback callback)
+		{
+			this.callback = callback;
+		}
 
-        public delegate void Callback(object[] result);
-        private Callback callback;
+		public delegate void Callback(object[] result);
+		private Callback callback;
 
-        public override void DoCallback(TypedObject result)
-        {
-            callback(result.GetArray("array"));
-        }
-    }
+		public override void DoCallback(TypedObject result)
+		{
+			callback(result.GetArray("array"));
+		}
+	}
 }
